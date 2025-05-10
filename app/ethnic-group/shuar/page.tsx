@@ -9,18 +9,34 @@ import {
   KeyboardControls,
 } from "@react-three/drei";
 import Controller from "ecctrl";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function Model(props: any) {
   const { scene, animations } = useGLTF("/RobotExpressive.glb");
   const { actions } = useAnimations(animations, scene);
   useEffect(() => {
+    console.log("actions", actions);
     (actions as any).Idle.play();
   }, [actions, scene]);
+
+  useEffect(() => {
+    if (!actions) return;
+
+    if (props.currentAnimation === "Idle") {
+      (actions as any).Idle.play();
+      (actions as any).Walking.stop();
+      (actions as any).Running.stop();
+    } else if (props.currentAnimation === "Walking") {
+      (actions as any).Idle.stop();
+      (actions as any).Walking.play();
+    }
+  }, [props.currentAnimation]);
+
   return <primitive object={scene} {...props} />;
 }
 
 const Shuar = () => {
+  const [currentAnimation, setCurrentAnimation] = useState("Idle");
   const keyboardMap = [
     { name: "forward", keys: ["ArrowUp", "KeyW"] },
     { name: "backward", keys: ["ArrowDown", "KeyS"] },
@@ -48,9 +64,26 @@ const Shuar = () => {
         </directionalLight>
 
         <Physics timeStep="vary">
-          <KeyboardControls map={keyboardMap}>
+          <KeyboardControls
+            map={keyboardMap}
+            onChange={(name, pressed) => {
+
+              const movements = ["forward", "backward", "leftward", "rightward"];
+
+              if (movements.includes(name) && pressed) {
+                setCurrentAnimation("Walking");
+              }
+              if (movements.includes(name) && !pressed) {
+                setCurrentAnimation("Idle");
+              }
+            }}
+          >
             <Controller maxVelLimit={5}>
-              <Model scale={0.5} position={[0, -0.7, 0]} />
+              <Model
+                currentAnimation={currentAnimation}
+                scale={0.5}
+                position={[0, -0.7, 0]}
+              />
             </Controller>
           </KeyboardControls>
 
