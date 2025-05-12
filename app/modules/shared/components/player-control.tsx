@@ -1,6 +1,6 @@
 import { KeyboardControls } from "@react-three/drei";
 import Controller from "ecctrl";
-import Player from "@/app/modules/ethnic-group/shuar/components/player";
+import Player from "@/app/modules/shared/components/player";
 import { useState } from "react";
 
 interface PlayerControlProps {

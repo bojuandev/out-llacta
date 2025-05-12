@@ -1,6 +1,7 @@
 "use client";
-import VirtualTour from "@/app/modules/ethnic-group/shuar/components/virtual-tour";
-import ObjectButton from "@/app/modules/shared/object-button";
+
+import MainVirtualTour from "@/app/modules/ethnic-group/shuar/main-virtual-tour/main-virtual-tour";
+import ObjectButton from "@/app/modules/shared/components/object-button";
 import { useState } from "react";
 
 const Shuar = () => {
@@ -12,7 +13,7 @@ const Shuar = () => {
 
   return (
     <div className="w-full h-screen relative">
-      <VirtualTour doorDetected={handleDoorDetected} />
+      <MainVirtualTour doorDetected={handleDoorDetected} />
       {doorDetected && (
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2- p-4">
           <ObjectButton

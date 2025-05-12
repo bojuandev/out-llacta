@@ -1,5 +1,5 @@
 import { Vector3 } from "@react-three/fiber";
-import CustomRigidBody from "@/app/modules/shared/custom-rigid-body";
+import CustomRigidBody from "@/app/modules/shared/components/custom-rigid-body";
 import Cartel from "./cartel";
 
 interface DoorProps {
