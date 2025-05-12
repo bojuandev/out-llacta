@@ -9,6 +9,7 @@ interface PlayerProps {
   position?: Vector3;
   rotation?: Vector3;
   scale?: number;
+  playerRef?: any;
   [key: string]: any;
 }
 
@@ -33,5 +34,7 @@ export default function Player(props: PlayerProps) {
     }
   }, [props.currentAnimation]);
 
-  return <primitive object={scene} {...props} />;
+
+
+  return <primitive ref={props.playerRef} object={scene} {...props} />;
 }

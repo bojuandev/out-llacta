@@ -3,6 +3,10 @@ import Controller from "ecctrl";
 import Player from "@/app/modules/ethnic-group/shuar/components/player";
 import { useState } from "react";
 
+interface PlayerControlProps {
+  playerRef?: any;
+}
+
 const keyboardMap = [
   { name: "forward", keys: ["ArrowUp", "KeyW"] },
   { name: "backward", keys: ["ArrowDown", "KeyS"] },
@@ -10,7 +14,7 @@ const keyboardMap = [
   { name: "rightward", keys: ["ArrowRight", "KeyD"] },
 ];
 
-function PlayerControl() {
+function PlayerControl(props: PlayerControlProps) {
   const [currentAnimation, setCurrentAnimation] = useState<"Idle" | "Walking">(
     "Idle"
   );
@@ -27,15 +31,13 @@ function PlayerControl() {
   };
 
   return (
-    <KeyboardControls
-      map={keyboardMap}
-      onChange={handleAnimationChange}
-    >
+    <KeyboardControls map={keyboardMap} onChange={handleAnimationChange}>
       <Controller maxVelLimit={5}>
         <Player
           currentAnimation={currentAnimation}
           scale={0.3}
           position={[0, -0.9, 0]}
+          playerRef={props.playerRef}
         />
       </Controller>
     </KeyboardControls>
