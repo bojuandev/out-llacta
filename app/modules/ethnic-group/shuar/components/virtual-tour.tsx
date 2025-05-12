@@ -34,7 +34,7 @@ function VirtualTour({ doorDetected }: VirtualTourProps) {
 
   const getObjectsWithPositions = () => {
     const center = new Vector3(0, 0, 0);
-    const radius = 15;
+    const radius = 10;
     const objects = [
       { id: "door-1", label: "Puerta 1", type: "door" },
       { id: "door-2", label: "Puerta 2", type: "door" },
@@ -49,15 +49,14 @@ function VirtualTour({ doorDetected }: VirtualTourProps) {
     ];
 
     return objects.map((object, i) => {
-      const angle = (i / objects.length) * Math.PI * 2;
+      const angle = (i / objects.length) * Math.PI * 2 + Math.PI / 2;
       const x = center.x + radius * Math.cos(angle);
       const z = center.z + radius * Math.sin(angle);
-      const y = center.y; // o puedes variar altura
-
+      const y = center.y;
       return {
         ...object,
         position: [x, y, z] as any,
-        rotation: [0, angle, 0] as any,
+        rotation: [0, -angle - Math.PI / 2, 0] as any,
         scale: 6,
         Component: Door,
       };
@@ -87,31 +86,6 @@ function VirtualTour({ doorDetected }: VirtualTourProps) {
             />
           );
         })}
-
-        {/* <Door
-          labelDoor="Puerta 1"
-          playerRef={playerRef}
-          position={[0, 0.3, 10]}
-          rotation={[0, Math.PI, 0]}
-          scale={6}
-          onEnterArea={handleEnterArea("Puerta 1")}
-        />
-        <Door
-          labelDoor="Puerta 2"
-          playerRef={playerRef}
-          position={[10, 0.5, 5]}
-          rotation={[0, -Math.PI / 2, 0]}
-          scale={6}
-          onEnterArea={handleEnterArea("Puerta 2")}
-        />
-        <Door
-          labelDoor="Puerta 3"
-          playerRef={playerRef}
-          position={[-10, 0.5, 5]}
-          rotation={[0, Math.PI / 2, 0]}
-          scale={6}
-          onEnterArea={handleEnterArea("Puerta 3")}
-        /> */}
       </CanvasEnvironment>
     </>
   );
