@@ -5,6 +5,7 @@ import Door from "./door";
 import PlayerControl from "./player-control";
 import CanvasEnvironment from "@/app/modules/shared/canvas-environment";
 import { useRef } from "react";
+import Cartel from "./cartel";
 
 interface VirtualTourProps {
   doorDetected?: (door: { name: string; isEnter: boolean }) => void;
@@ -35,17 +36,19 @@ function VirtualTour({ doorDetected }: VirtualTourProps) {
         <PlayerControl playerRef={playerRef} />
 
         <RigidBody type="fixed" colliders="trimesh">
-          <Box position={[0, 0, 0]} scale={[30, 1, 30]} />
+          <Box position={[0, 0, 0]} scale={[30, 0.5, 30]} />
         </RigidBody>
 
         <Door
+          labelDoor="Puerta 1"
           playerRef={playerRef}
-          position={[0, 0.5, 10]}
+          position={[0, 0.3, 10]}
           rotation={[0, Math.PI, 0]}
           scale={6}
           onEnterArea={handleEnterArea("Puerta 1")}
         />
         <Door
+          labelDoor="Puerta 2"
           playerRef={playerRef}
           position={[10, 0.5, 5]}
           rotation={[0, -Math.PI / 2, 0]}
@@ -53,6 +56,7 @@ function VirtualTour({ doorDetected }: VirtualTourProps) {
           onEnterArea={handleEnterArea("Puerta 2")}
         />
         <Door
+          labelDoor="Puerta 3"
           playerRef={playerRef}
           position={[-10, 0.5, 5]}
           rotation={[0, Math.PI / 2, 0]}

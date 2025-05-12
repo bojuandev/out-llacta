@@ -1,12 +1,8 @@
-import {
-  RapierRigidBody,
-  RigidBody,
-  RigidBodyProps,
-} from "@react-three/rapier";
+import { RigidBody, RigidBodyProps } from "@react-three/rapier";
 import { CloneProps, Gltf } from "@react-three/drei";
-import { Ref, RefObject, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Group, Object3DEventMap, Vector3 as V3 } from "three";
+import { Vector3 as V3 } from "three";
 
 interface CustomRigidBodyProps {
   rigidBody: RigidBodyProps;
@@ -44,7 +40,6 @@ function CustomRigidBody(props: CustomRigidBodyProps) {
 
     setIsInsideArea(horizontalDistance <= radius);
   });
-
 
   return (
     <RigidBody {...props.rigidBody}>
