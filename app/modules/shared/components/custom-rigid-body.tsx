@@ -5,7 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import { Vector3 as V3 } from "three";
 
 interface CustomRigidBodyProps {
-  rigidBody: RigidBodyProps;
+  rigidBody?: RigidBodyProps;
   gltf: Omit<CloneProps, "object"> & { src: string };
   ref?: React.Ref<any>;
   playerRef?: any;
@@ -37,12 +37,6 @@ function CustomRigidBody(props: CustomRigidBodyProps) {
         Math.pow(playerPos.z - doorPos.z, 2)
     );
     const radius = props.detectionRadius ?? 1;
-
-    /* console.log({
-      horizontalDistance,
-      radius,
-      isInsideArea: horizontalDistance <= radius,
-    }) */
 
     setIsInsideArea(horizontalDistance <= radius);
   });

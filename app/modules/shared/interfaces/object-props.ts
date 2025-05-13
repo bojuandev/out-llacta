@@ -3,7 +3,7 @@ import { Euler, Vector3 } from "@react-three/fiber";
 export interface ObjectProps {
   position?: Vector3;
   rotation?: Euler;
-  scale?: number;
+  scale?: number | Vector3;
 }
 
 export interface ObjectWithPosition extends ObjectProps {
