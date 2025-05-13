@@ -38,6 +38,12 @@ function CustomRigidBody(props: CustomRigidBodyProps) {
     );
     const radius = props.detectionRadius ?? 1;
 
+    /* console.log({
+      horizontalDistance,
+      radius,
+      isInsideArea: horizontalDistance <= radius,
+    }) */
+
     setIsInsideArea(horizontalDistance <= radius);
   });
 

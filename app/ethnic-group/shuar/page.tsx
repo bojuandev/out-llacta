@@ -8,6 +8,7 @@ const Shuar = () => {
   const [doorDetected, setDoorDetected] = useState<string | null>(null);
 
   const handleDoorDetected = (door: { name: string; isEnter: boolean }) => {
+    console.log("Door detected:", door);
     setDoorDetected(door.isEnter ? door.name : null);
   };
 

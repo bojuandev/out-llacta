@@ -18,7 +18,7 @@ function Cartel({ label, position, rotation, scale }: CartelProps) {
         anchorY="middle"
         rotation={[0, Math.PI, 0]}
         position={[0, 0, -0.001]}
-        font="/Merienda-SemiBold.ttf"
+        font="/assets-3D/Merienda-SemiBold.ttf"
       >
         {label}
       </Text>
@@ -26,7 +26,7 @@ function Cartel({ label, position, rotation, scale }: CartelProps) {
       <Gltf
         scale={[2, 0.8, 0.5]}
         rotation={[Math.PI / 2, 0, 0]}
-        src="/planks.glb"
+        src="/objects-3D/commons/planks.glb"
       />
     </group>
   );

@@ -14,7 +14,7 @@ interface PlayerProps {
 }
 
 export default function Player(props: PlayerProps) {
-  const { scene, animations } = useGLTF("/RobotExpressive.glb");
+  const { scene, animations } = useGLTF("/objects-3D/commons/robot-expressive.glb");
   const { actions } = useAnimations(animations, scene);
 
   useEffect(() => {
