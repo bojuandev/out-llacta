@@ -11,7 +11,7 @@ function ReturnButton(props: ReturnButtonProps) {
   return (
     <div className="absolute top-6 left-6 transform">
       <Button
-        color="primary"
+        className="text-slate-50"
         variant="light"
         startContent={<AngleLeftIcon />}
         onPress={props.onClick}

@@ -1,12 +1,13 @@
 "use-client";
 
 import { CircularProgress } from "@heroui/react";
+import { useEffect, useState } from "react";
 import FloatingImagePanel from "../ui-components/floating-image-panel";
 import Menu from "../ui-components/menu";
 import { ObjectDetected } from "../interfaces/detect-object";
 import ReturnButton from "../ui-components/return-button";
 import ViewMoreWindow from "../ui-components/view-more-window";
-import { useEffect, useState } from "react";
+import LoadingScreen from "../ui-components/loading-screen";
 
 interface InterfaceLayouyt {
   showReturnButton?: boolean;
@@ -31,32 +32,18 @@ function InterfaceLayout({
     setShowLoading(true);
     setTimeout(() => {
       setShowLoading(false);
-    }, 2000);
+    }, 1500);
   }, [currentObject]);
 
   return (
     <main className="w-full h-screen relative">
       <div className="w-full h-screen ">{children}</div>
-      <div
-        className={`absolute z-10 top-0 bottom-0 left-0 right-0 flex flex-col justify-center items-center bg-gradient-to-r from-indigo-500 to-purple-600 transition-all ${
-          showLoading ? "" : "opacity-0 hidden"
-        }`}
-      >
-        <CircularProgress
-          classNames={{
-            svg: "w-36 h-36 drop-shadow-md",
-            indicator: "stroke-white",
-            track: "stroke-white/10",
-            value: "text-3xl font-semibold text-white",
-            label: "text-white text-xl mt-4",
-          }}
-          label="Cargando..."
-        />
-      </div>
+
+      <LoadingScreen showLoading={showLoading} />
 
       {showReturnButton && <ReturnButton onClick={returnView} />}
 
-      { objectDetected && (
+      {objectDetected && (
         <ViewMoreWindow
           label={objectDetected.label}
           onViewMore={() => goView(objectDetected)}
@@ -65,7 +52,7 @@ function InterfaceLayout({
 
       {currentObject?.type === "object" && showReturnButton && (
         <>
-          <div className="absolute left-40 top-1/2 -translate-y-1/2 transform flex flex-col gap-2 p-2 max-w-72">
+          <div className="absolute left-40 top-1/2 -translate-y-1/2 transform flex flex-col gap-2 p-2 max-w-96">
             <h2 className="text-9xl text-slate-50">{currentObject.label}</h2>
             <p className="text-sm text-slate-50">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
@@ -77,6 +64,27 @@ function InterfaceLayout({
           <FloatingImagePanel />
         </>
       )}
+
+      {currentObject?.type !== "object" && (
+        <>
+          <div className="absolute left-40 bottom-16 -translate-y-1/2 transform flex flex-col gap-2 p-2 max-w-96">
+            <h2 className="text-5xl text-slate-50">
+              Panel {!currentObject ? "Principal" : currentObject.label}
+            </h2>
+            <p className="text-lg text-slate-50">
+              Dirigete a {!currentObject ? "una puerta" : "un objeto"} para
+              poder {!currentObject ? "ver sus objetos." : "verlo con detalle."}
+            </p>
+          </div>
+        </>
+      )}
+
+      <div className="absolute bottom-8 right-8 flex justify-center gap-2 opacity-50">
+        <span className="text-slate-50  text-shadow-lg shadow-slate-300">by</span>{" "}
+        <a href="https://bojuan.dev">
+          <img className="w-12 text-shadow-sm shadow-slate-300" src="/bojuan-logo.svg" alt="/bojuan.dev" />
+        </a>
+      </div>
       <Menu />
     </main>
   );

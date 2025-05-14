@@ -14,7 +14,7 @@ export const mainShuarData: ObjectData[] = [
       detectionRadius: 4,
     },
   },
-  { id: "adornos-corporales", label: "Adornos Corporales", type: "panel" },
+  { id: "adornos-corporales", label: "Cacería", type: "panel" },
 ];
 
 export const objectsOfPanel: ObjectOfPanel = {
