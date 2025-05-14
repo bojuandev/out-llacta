@@ -10,11 +10,12 @@ export interface ObjectData extends ObjectProps {
     id: string;
     label: string;
     type: "object" | "panel";
-    objectWithBaseProps?: {
+    objectData?: {
       srcObject: string;
       groupProps?: ObjectProps;
       objectProps?: ObjectProps;
       detectionRadius?: number;
+      description?: string
     };
   }
 

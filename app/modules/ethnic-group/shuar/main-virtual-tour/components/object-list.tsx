@@ -54,14 +54,14 @@ function ObjectList(props: ObjectListProps) {
         return (
           <ObjectWithBase
             key={id}
-            srcObject={object.objectWithBaseProps!.srcObject}
+            srcObject={object.objectData!.srcObject}
             labelObject={label}
             groupProps={{
-              ...object.objectWithBaseProps!.groupProps,
+              ...object.objectData!.groupProps,
               position,
               rotation,
             }}
-            objectProps={object.objectWithBaseProps!.objectProps}
+            objectProps={object.objectData!.objectProps}
             detectionRadius={4}
             playerRef={props.playerRef}
             onEnterArea={props.onEnterArea?.(object)}

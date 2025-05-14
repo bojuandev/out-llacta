@@ -5,7 +5,7 @@ export const mainShuarData: ObjectData[] = [
     id: "hombre-shuar",
     label: "Hombre Shuar",
     type: "object",
-    objectWithBaseProps: {
+    objectData: {
       srcObject: "/objects-3D/shuar/hombre-shuar.glb",
       objectProps: {
         position: [0, 1.65, 1.5],
@@ -23,7 +23,7 @@ export const objectsOfPanel: ObjectOfPanel = {
       id: "hombre-shuar",
       label: "Hombre Shuar",
       type: "object",
-      objectWithBaseProps: {
+      objectData: {
         srcObject: "/objects-3D/shuar/hombre-shuar.glb",
         objectProps: {
           position: [0, 1.65, 1.5],
@@ -36,7 +36,7 @@ export const objectsOfPanel: ObjectOfPanel = {
       id: "hombre-shuar2",
       label: "Hombre Shuar",
       type: "object",
-      objectWithBaseProps: {
+      objectData: {
         srcObject: "/objects-3D/shuar/hombre-shuar.glb",
         objectProps: {
           position: [0, 1.65, 1.5],

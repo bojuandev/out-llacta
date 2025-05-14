@@ -44,10 +44,10 @@ function Menu() {
 
   const renderIndications = () => {
     return (
-      <div className="flex flex-col gap-12">
+      <div className="flex flex-col gap-12 h-[500px] overflow-y-scroll">
 
-        <div className="flex gap-6 items-end">
-          <div className="w-3/5">
+        <div className="flex flex-col md:flex-row gap-6 items-center md:items-end">
+          <div className="md:w-3/5">
             <h2 className="font-bold text-2xl mb-4">
             Acércate a una puerta
             </h2>
@@ -69,8 +69,8 @@ function Menu() {
           />
         </div>
 
-        <div className="flex gap-6 items-end">
-          <div className="w-3/5">
+        <div className="flex flex-col md:flex-row  gap-6 items-center md:items-end">
+          <div className="md:w-3/5">
             <h2 className="font-bold text-2xl mb-4">
               Observa con detalle un objeto
             </h2>
@@ -140,7 +140,7 @@ function Menu() {
                 {titleCatalog[contentModalType]}
               </ModalHeader>
               <ModalBody>
-                <div className="w-full  my-6">
+                <div className="w-full my-6">
                   {contentModalType === "menu" ? renderMenu() : null}
                   {contentModalType === "indications"
                     ? renderIndications()

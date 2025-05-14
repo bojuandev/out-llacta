@@ -76,7 +76,7 @@ const Shuar = () => {
 
       {currentDataView?.type === "object" && (
         <ObjectDetailView
-          src={currentDataView.objectWithBaseProps!.srcObject}
+          src={currentDataView.objectData!.srcObject}
         />
       )}
     </InterfaceLayout>
