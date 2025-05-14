@@ -7,7 +7,7 @@ import { ObjectWithPosition } from "@/app/modules/shared/interfaces/object-props
 interface ObjectListProps {
   objectsToRender: ObjectWithPosition[];
   playerRef?: any;
-  onEnterArea?: (doorName: string) => (isEnter: boolean) => void;
+  onEnterArea?: (id: string, objectDetectedName: string, type: "panel" | "object") => (isEnter: boolean) => void;
 }
 
 function ObjectList(props: ObjectListProps) {
@@ -33,9 +33,9 @@ function ObjectList(props: ObjectListProps) {
   return (
     <>
       {getObjectsWithPositions().map((object) => {
-        const { id, label, position, rotation, scale } = object;
+        const { id, label, position, rotation, scale, type } = object;
 
-        if (object.type === "door") {
+        if (object.type === "panel") {
           return (
             <Door
               key={id}
@@ -46,7 +46,7 @@ function ObjectList(props: ObjectListProps) {
                 rotation,
                 scale,
               }}
-              onEnterArea={props.onEnterArea?.(label)}
+              onEnterArea={props.onEnterArea?.(id, label, type)}
             />
           );
         }
@@ -64,7 +64,7 @@ function ObjectList(props: ObjectListProps) {
             objectProps={object.objectWithBaseProps!.objectProps}
             detectionRadius={4}
             playerRef={props.playerRef}
-            onEnterArea={props.onEnterArea?.(label)}
+            onEnterArea={props.onEnterArea?.(id, label, type)}
           />
         );
       })}

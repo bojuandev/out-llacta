@@ -1,3 +1,5 @@
+"use-client"
+
 import { RigidBody } from "@react-three/rapier";
 import { Gltf } from "@react-three/drei";
 import { ObjectProps } from "../interfaces/object-props";

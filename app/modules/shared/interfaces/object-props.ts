@@ -9,7 +9,7 @@ export interface ObjectProps {
 export interface ObjectWithPosition extends ObjectProps {
     id: string;
     label: string;
-    type: "object" | "door";
+    type: "object" | "panel";
     objectWithBaseProps?: {
       srcObject: string;
       groupProps?: ObjectProps;

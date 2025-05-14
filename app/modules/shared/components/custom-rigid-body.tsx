@@ -1,3 +1,5 @@
+"use-client"
+
 import { RigidBody, RigidBodyProps } from "@react-three/rapier";
 import { CloneProps, Gltf } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";

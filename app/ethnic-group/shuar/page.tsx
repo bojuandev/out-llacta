@@ -1,31 +1,45 @@
 "use client";
 
-import MainVirtualTour from "@/app/modules/ethnic-group/shuar/main-virtual-tour/main-virtual-tour";
-import ObjectButton from "@/app/modules/shared/components/object-button";
+import MainPanelView from "@/app/modules/ethnic-group/shuar/views/main-panel-view";
+import ObjectDetailView from "@/app/modules/ethnic-group/shuar/views/object-detail-view";
+import { ObjectDetected } from "@/app/modules/shared/interfaces/detect-object";
+import InterfaceLayout from "@/app/modules/shared/layouts/interface-layout";
 import { useState } from "react";
 
 const Shuar = () => {
-  const [doorDetected, setDoorDetected] = useState<string | null>(null);
+  const [currentView, setCurrentView] = useState<"main" | "panel" | "object">(
+    "main"
+  );
+  const [objectDetected, setObjectDetected] = useState<ObjectDetected | null>(
+    null
+  );
+  const [showPanelObjectDetected, setShowPanelObjectDetected] =
+    useState<boolean>(false);
 
-  const handleDoorDetected = (door: { name: string; isEnter: boolean }) => {
-    console.log("Door detected:", door);
-    setDoorDetected(door.isEnter ? door.name : null);
+  const handleObjectDetected = (objectDetected: ObjectDetected) => {
+    console.log("Object detected:", objectDetected);
+
+    setShowPanelObjectDetected(objectDetected.isEnter);
+    setObjectDetected(objectDetected.isEnter ? objectDetected : null);
   };
 
+  const handleGoView = (objectDetected: ObjectDetected) => {
+    setCurrentView(objectDetected.type)
+  }
+
   return (
-    <div className="w-full h-screen relative">
-      <MainVirtualTour doorDetected={handleDoorDetected} />
-      {doorDetected && (
-        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2- p-4">
-          <ObjectButton
-            label={doorDetected}
-            onClick={() => {
-              console.log("Visitar", doorDetected);
-            }}
-          />
-        </div>
+    <InterfaceLayout
+      showPanelObjectDetected={showPanelObjectDetected}
+      objectDetected={objectDetected}
+      goView={handleGoView}
+    >
+      {currentView === "main" && (
+        <MainPanelView objectDetected={handleObjectDetected} />
       )}
-    </div>
+      {currentView === "object" && (
+        <ObjectDetailView src="/objects-3D/commons/robot-expressive.glb" />
+      )}
+    </InterfaceLayout>
   );
 };
 
