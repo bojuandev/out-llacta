@@ -1,47 +1,45 @@
 "use-client";
 
 import { Button } from "@heroui/react";
-import { AngleLeftIcon } from "../icons/angle-left-icon";
 import FloatingImagePanel from "../ui-components/floating-image-panel";
 import Menu from "../ui-components/menu";
 import { ObjectDetected } from "../interfaces/detect-object";
+import ReturnButton from "../ui-components/return-button";
+import ViewMoreWindow from "../ui-components/view-more-window";
 
 interface InterfaceLayouyt {
   showPanelObjectDetected?: boolean;
   showReturnButton?: boolean;
   objectDetected?: ObjectDetected | null;
   children: React.ReactNode;
-  goView: ( objectDetected: ObjectDetected ) => void
+  goView: (objectDetected: ObjectDetected) => void;
+  returnView: () => void;
+  currentObject?: ObjectDetected
 }
 
 function InterfaceLayout({
   children,
+  currentObject,
   showPanelObjectDetected,
   showReturnButton,
   objectDetected,
+  goView,
+  returnView,
 }: InterfaceLayouyt) {
   return (
     <main className="w-full h-screen relative">
       <div className="w-full h-screen ">{children}</div>
 
-      <div className="absolute top-6 left-6 transform">
-        <Button
-          color="primary"
-          variant="light"
-          startContent={<AngleLeftIcon />}
-        >
-          Regresar
-        </Button>
-      </div>
+      {showReturnButton && <ReturnButton onClick={returnView} />}
 
       {showPanelObjectDetected && !!objectDetected && (
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 transform flex items-center gap-4 roundeds p-2 bg-slate-50">
-          <span>{objectDetected.name}</span>
-          <Button color="primary">Ver</Button>
-        </div>
+        <ViewMoreWindow
+          label={objectDetected.label}
+          onViewMore={() => goView(objectDetected)}
+        />
       )}
 
-      {showReturnButton && <FloatingImagePanel />}
+      {currentObject?.type === "object" && showReturnButton && <FloatingImagePanel />}
       <Menu />
     </main>
   );

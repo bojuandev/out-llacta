@@ -1,17 +1,17 @@
 import { Vector3 } from "three";
 import ObjectWithBase from "@/app/modules/shared/components/object-with-base";
 import Door from "./door";
-import { ObjectWithPosition } from "@/app/modules/shared/interfaces/object-props";
+import { ObjectData } from "@/app/modules/shared/interfaces/object-props";
 
 
 interface ObjectListProps {
-  objectsToRender: ObjectWithPosition[];
+  objectsToRender: ObjectData[];
   playerRef?: any;
-  onEnterArea?: (id: string, objectDetectedName: string, type: "panel" | "object") => (isEnter: boolean) => void;
+  onEnterArea?: (objectData: ObjectData) => (isEnter: boolean) => void;
 }
 
 function ObjectList(props: ObjectListProps) {
-  const getObjectsWithPositions = (): ObjectWithPosition[] => {
+  const getObjectsWithPositions = (): ObjectData[] => {
     const center = new Vector3(0, 0, 0);
     const radius = 10;
     
@@ -26,7 +26,7 @@ function ObjectList(props: ObjectListProps) {
         position: [x, y, z] as any,
         rotation: [0, -angle + Math.PI / 2, 0] as any,
         scale: 6,
-      } as ObjectWithPosition;
+      } as ObjectData;
     });
   };
 
@@ -35,7 +35,7 @@ function ObjectList(props: ObjectListProps) {
       {getObjectsWithPositions().map((object) => {
         const { id, label, position, rotation, scale, type } = object;
 
-        if (object.type === "panel") {
+        if (type === "panel") {
           return (
             <Door
               key={id}
@@ -46,7 +46,7 @@ function ObjectList(props: ObjectListProps) {
                 rotation,
                 scale,
               }}
-              onEnterArea={props.onEnterArea?.(id, label, type)}
+              onEnterArea={props.onEnterArea?.(object)}
             />
           );
         }
@@ -64,7 +64,7 @@ function ObjectList(props: ObjectListProps) {
             objectProps={object.objectWithBaseProps!.objectProps}
             detectionRadius={4}
             playerRef={props.playerRef}
-            onEnterArea={props.onEnterArea?.(id, label, type)}
+            onEnterArea={props.onEnterArea?.(object)}
           />
         );
       })}

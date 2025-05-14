@@ -1,6 +1,5 @@
-export interface ObjectDetected {
-  id: string;
-  name: string;
+import { ObjectData } from "./object-props";
+
+export interface ObjectDetected extends ObjectData {
   isEnter: boolean;
-  type: "panel" | "object"
 }

@@ -6,7 +6,7 @@ export interface ObjectProps {
   scale?: number | Vector3;
 }
 
-export interface ObjectWithPosition extends ObjectProps {
+export interface ObjectData extends ObjectProps {
     id: string;
     label: string;
     type: "object" | "panel";
@@ -17,3 +17,6 @@ export interface ObjectWithPosition extends ObjectProps {
       detectionRadius?: number;
     };
   }
+
+  export type Panels = "adornos-corporales" | "alfareria-cocina"
+  export type ObjectOfPanel = Record<string, ObjectData[]>

@@ -3,28 +3,22 @@
 import { useRef } from "react";
 import CanvasEnvironment from "@/app/modules/shared/components/canvas-environment";
 import MainEnvironment from "@/app/modules/shared/components/main-environment";
-import { mainShuarData } from "@/app/modules/shared/data/shuar-data";
 import ObjectList from "../main-virtual-tour/components/object-list";
 import PlayerControl from "../../../shared/components/player-control";
 import { ObjectDetected } from "@/app/modules/shared/interfaces/detect-object";
+import { ObjectData } from "@/app/modules/shared/interfaces/object-props";
 
-interface MainPanelProps {
+interface PanelProps {
   objectDetected?: (door: ObjectDetected) => void;
+  objectsOfPanel: ObjectData[]
 }
 
-function MainPanel({ objectDetected }: MainPanelProps) {
+function PanelView({ objectDetected, objectsOfPanel }: PanelProps) {
   const playerRef = useRef<any>(null);
 
-  const handleEnterArea =
-    (id: string, doorName: string, type: "panel" | "object") =>
-    (isEnter: boolean) => {
-      objectDetected?.({
-        id,
-        name: doorName,
-        isEnter,
-        type,
-      });
-    };
+  const handleEnterArea = (objectData: ObjectData) => (isEnter: boolean) => {
+    objectDetected?.({ ...objectData, isEnter });
+  };
   return (
     <>
       <CanvasEnvironment>
@@ -33,11 +27,11 @@ function MainPanel({ objectDetected }: MainPanelProps) {
         <ObjectList
           playerRef={playerRef}
           onEnterArea={handleEnterArea}
-          objectsToRender={mainShuarData}
+          objectsToRender={objectsOfPanel}
         />
       </CanvasEnvironment>
     </>
   );
 }
 
-export default MainPanel;
+export default PanelView;
