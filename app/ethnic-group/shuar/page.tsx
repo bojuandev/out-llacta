@@ -16,8 +16,6 @@ const Shuar = () => {
   const [objectDetected, setObjectDetected] = useState<ObjectDetected | null>(
     null
   );
-  const [showPanelObjectDetected, setShowPanelObjectDetected] =
-    useState<boolean>(false);
 
   const [showReturnButton, setShowReturnButton] = useState<boolean>(false);
 
@@ -27,7 +25,6 @@ const Shuar = () => {
   );
 
   const handleObjectDetected = (objectDetected: ObjectDetected) => {
-    setShowPanelObjectDetected(objectDetected.isEnter);
     setObjectDetected(objectDetected.isEnter ? objectDetected : null);
   };
 
@@ -37,6 +34,7 @@ const Shuar = () => {
     setBreadcrumb(newbreadcrumb);
 
     setShowReturnButton(newbreadcrumb.length > 0);
+    setObjectDetected(null)
   };
 
   const handleReturnView = () => {
@@ -45,6 +43,7 @@ const Shuar = () => {
     setBreadcrumb(newbreadcrumb);
 
     setShowReturnButton(newbreadcrumb.length > 0);
+    setObjectDetected(null)
   };
 
   const getDataOfPanel = (): ObjectData[] => {
@@ -55,7 +54,6 @@ const Shuar = () => {
 
   return (
     <InterfaceLayout
-      showPanelObjectDetected={showPanelObjectDetected}
       showReturnButton={showReturnButton}
       objectDetected={objectDetected}
       goView={handleGoView}

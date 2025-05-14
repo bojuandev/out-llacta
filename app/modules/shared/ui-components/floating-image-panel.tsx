@@ -22,13 +22,13 @@ export default function FloatingImagePanel() {
 
   return (
     <>
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 transform flex gap-2 p-2 bg-slate-50 rounded">
+      <div className="absolute right-40 top-1/2 -translate-y-1/2 transform flex flex-col gap-2 p-2 bg-slate-50 rounded">
         {images.map((src, index) => (
           <img
             key={index}
             src={src}
             alt={`Thumbnail ${index}`}
-            className="w-24 h-24 object-cover rounded cursor-pointer transition-transform hover:scale-105"
+            className="w-32 h-32 object-cover rounded cursor-pointer transition-transform hover:scale-105"
             onClick={() => {
               setSelectedImage(src);
               onOpen();
