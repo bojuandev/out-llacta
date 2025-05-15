@@ -1,6 +1,7 @@
 "use-client";
 
 import { useEffect, useState } from "react";
+import { Button } from "@heroui/react";
 
 import FloatingImagePanel from "../ui-components/floating-image-panel";
 import Menu from "../ui-components/menu";
@@ -8,6 +9,8 @@ import { ObjectDetected } from "../interfaces/detect-object";
 import ReturnButton from "../ui-components/return-button";
 import ViewMoreWindow from "../ui-components/view-more-window";
 import LoadingScreen from "../ui-components/loading-screen";
+
+import { useJoystickControls } from "ecctrl";
 
 interface InterfaceLayouyt {
   showReturnButton?: boolean;
@@ -27,6 +30,7 @@ function InterfaceLayout({
   returnView,
 }: InterfaceLayouyt) {
   const [showLoading, setShowLoading] = useState<boolean>(true);
+  const setJoystick = useJoystickControls((state) => state.setJoystick);
 
   useEffect(() => {
     setShowLoading(true);
@@ -37,6 +41,18 @@ function InterfaceLayout({
 
   return (
     <main className="w-full h-screen relative">
+      {!showLoading && currentObject?.type !== "object" && (
+        <Button
+          className="absolute md:hidden z-10 bottom-32 right-12 w-20 h-20 border-2 border-solid text-white font-bold shadow-lg opacity-60"
+          radius="full"
+          color="default"
+          onPointerEnter={() => setJoystick(1, Math.PI / 2, false)}
+          onPointerLeave={() => setJoystick(0, Math.PI / 2, false)}
+        >
+          Caminar
+        </Button>
+      )}
+
       <div className="w-full h-screen ">{children}</div>
 
       <LoadingScreen showLoading={showLoading} />
@@ -53,10 +69,15 @@ function InterfaceLayout({
       {currentObject?.type === "object" && showReturnButton && (
         <>
           <div className="absolute left-10 md:left-40 bottom-10 md:bottom-full md:top-1/2 -translate-y-1/2 transform flex flex-col gap-2 p-2 max-w-80 md:max-w-96">
-            <h2 className="text-4xl md:text-9xl text-slate-50">{currentObject.label}</h2>
+            <h2 className="text-4xl md:text-9xl text-slate-50">
+              {currentObject.label}
+            </h2>
             <p className="text-sm text-slate-50">
-             {/*  {currentObject.objectData?.description ?? ""} */}
-             Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda nemo deleniti sed placeat velit ipsa iusto repellendus atque dignissimos cupiditate ex dicta quaerat totam officiis id, qui molestiae. Voluptatibus, harum.
+              {/*  {currentObject.objectData?.description ?? ""} */}
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
+              nemo deleniti sed placeat velit ipsa iusto repellendus atque
+              dignissimos cupiditate ex dicta quaerat totam officiis id, qui
+              molestiae. Voluptatibus, harum.
             </p>
           </div>
           <FloatingImagePanel />
@@ -78,9 +99,15 @@ function InterfaceLayout({
       )}
 
       <div className="absolute bottom-8 right-8 flex justify-center gap-2 opacity-50">
-        <span className="text-slate-50  text-shadow-lg shadow-slate-300">by</span>{" "}
+        <span className="text-slate-50  text-shadow-lg shadow-slate-300">
+          by
+        </span>{" "}
         <a href="https://bojuan.dev" target="_blank">
-          <img className="w-12 text-shadow-sm shadow-slate-300" src="/bojuan-logo.svg"  alt="/bojuan.dev" />
+          <img
+            className="w-12 text-shadow-sm shadow-slate-300"
+            src="/bojuan-logo.svg"
+            alt="/bojuan.dev"
+          />
         </a>
       </div>
       <Menu />

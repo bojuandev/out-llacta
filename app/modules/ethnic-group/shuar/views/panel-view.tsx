@@ -10,7 +10,7 @@ import { ObjectData } from "@/app/modules/shared/interfaces/object-props";
 
 interface PanelProps {
   objectDetected?: (door: ObjectDetected) => void;
-  objectsOfPanel: ObjectData[]
+  objectsOfPanel: ObjectData[];
 }
 
 function PanelView({ objectDetected, objectsOfPanel }: PanelProps) {
