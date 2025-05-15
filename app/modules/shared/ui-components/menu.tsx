@@ -45,14 +45,11 @@ function Menu() {
   const renderIndications = () => {
     return (
       <div className="flex flex-col gap-12 h-[500px] overflow-y-scroll">
-
         <div className="flex flex-col md:flex-row gap-6 items-center md:items-end">
           <div className="md:w-3/5">
-            <h2 className="font-bold text-2xl mb-4">
-            Acércate a una puerta
-            </h2>
+            <h2 className="font-bold text-2xl mb-4">Acércate a una puerta</h2>
             <p>
-            A medida que te desplaces por el recorrido virtual, acércate a
+              A medida que te desplaces por el recorrido virtual, acércate a
               cualquiera de las puertas disponibles. Al estar lo suficientemente
               cerca, se activará automáticamente una ventana emergente en la
               pantalla. En esta ventana verás un botón interactivo que te
@@ -64,7 +61,7 @@ function Menu() {
           </div>
           <img
             src="/images/door-image.webp"
-            alt="amor"
+            alt="door"
             className="w-52 h-72 object-cover rounded"
           />
         </div>
@@ -86,8 +83,56 @@ function Menu() {
           </div>
           <img
             src="/images/object-image.webp"
-            alt="amor"
+            alt="object"
             className="w-52 h-72 object-cover rounded"
+          />
+        </div>
+      </div>
+    );
+  };
+
+  const renderControls = () => {
+    return (
+      <div className="flex flex-col gap-12 h-[500px] overflow-y-scroll">
+        <div className="flex flex-col md:flex-row gap-6 items-center md:items-end">
+          <div className="md:w-3/5">
+            <h2 className="font-bold text-2xl mb-4">Explora el escenario</h2>
+            <p>
+              Para desplazarte dentro del recorrido virtual desde una
+              computadora, puedes utilizar las teclas{" "}
+              <strong>W, A, S y D</strong> o las teclas de dirección (arriba,
+              abajo, izquierda, derecha). Estas permiten mover tu objeto 3D a
+              través del escenario con fluidez. Además, puedes mover la vista
+              del escenario manteniendo presionado el click derecho del mouse y
+              arrastrando en la dirección deseada, lo que te da mayor control
+              sobre la exploración.
+            </p>
+          </div>
+          <img
+            src="/images/keys-image.webp"
+            alt="keys"
+            className="w-72 h-32 object-cover rounded"
+          />
+        </div>
+
+        <div className="flex flex-col md:flex-row  gap-6 items-center md:items-end">
+          <div className="md:w-3/5">
+            <h2 className="font-bold text-2xl mb-4">
+              Explora con tu dispositivo móvil
+            </h2>
+            <p>
+              En dispositivos móviles, encontrarás un botón en la esquina
+              inferior derecha de la pantalla que, al mantenerlo presionado,
+              hará que el objeto comience a caminar en línea recta. Para cambiar
+              la dirección o explorar el entorno, simplemente arrastra el dedo
+              sobre la pantalla, lo que te permitirá mover el escenario de
+              manera intuitiva.
+            </p>
+          </div>
+          <img
+            src="/images/button-image.webp"
+            alt="buttons"
+            className="w-52 h-52 object-cover rounded"
           />
         </div>
       </div>
@@ -145,7 +190,7 @@ function Menu() {
                   {contentModalType === "indications"
                     ? renderIndications()
                     : null}
-                  {contentModalType === "controls" ? renderIndications() : null}
+                  {contentModalType === "controls" ? renderControls() : null}
                 </div>
               </ModalBody>
             </>

@@ -1,6 +1,6 @@
 "use-client";
 
-import { Button } from "@heroui/react";
+import { Card, CardHeader, CardFooter, Image, Button } from "@heroui/react";
 
 interface ViewMoreWindowProps {
   label: string;
@@ -9,11 +9,17 @@ interface ViewMoreWindowProps {
 
 function ViewMoreWindow(props: ViewMoreWindowProps) {
   return (
-    <div className="absolute z-10 bottom-14 left-1/2 -translate-x-1/2 transform flex items-center gap-4 rounded-[16px] p-6 bg-slate-50 shadow-lg shadow-slate-500/50">
-      <span className="text-2xl font-semibold">{props.label}</span>
-      <Button className="text-slate-50 bg-slate-600" onPress={props.onViewMore}>
-        Ver
-      </Button>
+    <div className="absolute z-10 bottom-20 left-1/2 -translate-x-1/2 transform flex items-center">
+      <Card className="w-fit col-span-12 sm:col-span-7">
+        <CardFooter className="bg-slate-100 bottom-0 z-10 border-default-600 dark:border-default-100 flex gap-5">
+          <div className="flex flex-grow gap-2 items-center">
+            <p className="text-sm min-w-28 font-bold text-gray-900 text-center">{props.label}</p>
+          </div>
+          <Button radius="full" size="sm" onPress={props.onViewMore}>
+            Ver
+          </Button>
+        </CardFooter>
+      </Card>
     </div>
   );
 }

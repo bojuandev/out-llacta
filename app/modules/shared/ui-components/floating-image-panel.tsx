@@ -1,29 +1,26 @@
 "use-client";
 
 import { useState } from "react";
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Button,
-  useDisclosure,
-  Listbox,
-  ListboxItem,
-  cn,
-} from "@heroui/react";
+import { Modal, ModalContent, ModalBody, useDisclosure } from "@heroui/react";
 
 const images = ["/amor.jpeg", "/amor.jpeg", "/amor.jpeg"];
 
-export default function FloatingImagePanel() {
+interface FloatingImagePanelProps {
+  imagesList: string[];
+}
+
+export default function FloatingImagePanel({
+  imagesList,
+}: FloatingImagePanelProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
+  if(imagesList.length === 0) return null
+
   return (
     <>
-      <div className="absolute right-4 md:right-40 top-1/2 -translate-y-1/2 transform flex flex-col gap-1 md:gap-2 p-1 md:p-2 bg-slate-50 rounded-full md:rounded">
-        {images.map((src, index) => (
+      <div className="absolute right-4 md:right-4 top-20 transform flex flex-col gap-1 md:gap-2 p-1 md:p-2 bg-white/40 rounded-full md:rounded overflow-y-scroll max-h-48 md:max-h-[600px]">
+        {imagesList.map((src, index) => (
           <img
             key={index}
             src={src}
@@ -40,18 +37,20 @@ export default function FloatingImagePanel() {
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        size="xs"
+        size="xl"
         backdrop="blur"
       >
         <ModalContent>
           {() => (
             <>
               <ModalBody>
-                <img
-                  src={selectedImage!}
-                  alt="Expanded view"
-                  className="w-full h-full"
-                />
+                <div className="w-full h-full flex items-center">
+                  <img
+                    src={selectedImage!}
+                    alt="Expanded view"
+                    className="w-full object-cover"
+                  />
+                </div>
               </ModalBody>
             </>
           )}

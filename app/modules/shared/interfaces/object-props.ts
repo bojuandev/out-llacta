@@ -16,6 +16,7 @@ export interface ObjectData extends ObjectProps {
       objectProps?: ObjectProps;
       detectionRadius?: number;
       description?: string
+      images?: string[]
     };
   }
 

@@ -24,7 +24,7 @@ function Cartel({ label, position, rotation, scale }: CartelProps) {
       </Text>
 
       <Gltf
-        scale={[2, 0.8, 0.5]}
+        scale={[2.5, 0.8, 0.5]}
         rotation={[Math.PI / 2, 0, 0]}
         src="/objects-3D/commons/planks.glb"
       />

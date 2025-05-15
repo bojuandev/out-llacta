@@ -34,7 +34,7 @@ const Shuar = () => {
     setBreadcrumb(newbreadcrumb);
 
     setShowReturnButton(newbreadcrumb.length > 0);
-    setObjectDetected(null)
+    setObjectDetected(null);
   };
 
   const handleReturnView = () => {
@@ -43,7 +43,7 @@ const Shuar = () => {
     setBreadcrumb(newbreadcrumb);
 
     setShowReturnButton(newbreadcrumb.length > 0);
-    setObjectDetected(null)
+    setObjectDetected(null);
   };
 
   const getDataOfPanel = (): ObjectData[] => {
@@ -60,24 +60,28 @@ const Shuar = () => {
       returnView={handleReturnView}
       currentObject={currentDataView}
     >
-      {!currentDataView && (
-        <PanelView
-          objectsOfPanel={getDataOfPanel()}
-          objectDetected={handleObjectDetected}
-        />
-      )}
+      {(loading) => (
+        <>
+          {!currentDataView && (
+            <PanelView
+              objectsOfPanel={getDataOfPanel()}
+              objectDetected={handleObjectDetected}
+              loading={loading}
+            />
+          )}
 
-      {currentDataView?.type === "panel" && (
-        <PanelView
-          objectsOfPanel={getDataOfPanel()}
-          objectDetected={handleObjectDetected}
-        />
-      )}
+          {currentDataView?.type === "panel" && (
+            <PanelView
+              objectsOfPanel={getDataOfPanel()}
+              objectDetected={handleObjectDetected}
+              loading={loading}
+            />
+          )}
 
-      {currentDataView?.type === "object" && (
-        <ObjectDetailView
-          src={currentDataView.objectData!.srcObject}
-        />
+          {currentDataView?.type === "object" && (
+            <ObjectDetailView src={currentDataView.objectData!.srcObject} />
+          )}
+        </>
       )}
     </InterfaceLayout>
   );

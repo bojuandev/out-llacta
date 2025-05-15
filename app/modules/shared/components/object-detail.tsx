@@ -10,7 +10,7 @@ function ObjectDetail({
   children: React.ReactNode;
 }>) {
   return (
-    <Canvas shadows camera={{ fov: 50 }}>
+    <Canvas shadows camera={{ fov: 50, position: [0, 2, 10]  }}>
       <Environment files="/assets-3D/night.hdr" ground={{ scale: 100 }} />
       <OrbitControls makeDefault />
 
