@@ -263,14 +263,14 @@ export const objectsOfPanel: ObjectOfPanel = {
       },
     },
     {
-      id: "Wempenk",
+      id: "wempenk",
       label: "Wempenk",
       type: "object",
       objectData: {
-        srcObject: "/objects-3D/shuar/alfareria-cocina/Wempenk/Wempenk.glb",
+        srcObject: "/objects-3D/shuar/alfareria-cocina/Wempenk/wempenk.glb",
         description:
           "Recipiente de forma alargada. Se utiliza para transportar líquidos.",
-        images: ["/objects-3D/shuar/alfareria-cocina/Wempenk/Wempenk.webp"],
+        images: ["/objects-3D/shuar/alfareria-cocina/Wempenk/wempenk.webp"],
         objectProps: {
           position: [0, 1.15, 0],
           rotation: [0, 0, 0],
