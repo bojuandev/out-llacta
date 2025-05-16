@@ -1,8 +1,6 @@
 import { ObjectData, ObjectOfPanel } from "../interfaces/object-props";
 
 export const mainShuarData: ObjectData[] = [
-  { id: "adornos-corporales", label: "Adornos corporales", type: "panel" },
-  { id: "alfareria-cocina", label: "Alfarería y Cocina", type: "panel" },
   {
     id: "hombre-shuar",
     label: "Hombre Shuar",
@@ -26,6 +24,12 @@ export const mainShuarData: ObjectData[] = [
       ],
     },
   },
+  { id: "adornos-corporales", label: "Adornos corporales", type: "panel" },
+  { id: "alfareria-cocina", label: "Alfarería y Cocina", type: "panel" },
+  { id: "caceria-armas", label: "Cacería y Armas", type: "panel" },
+  { id: "instrumentos-musicales", label: "Instrumentos musicales", type: "panel" },
+  { id: "navegacion-pesca", label: "Navegación y pesca", type: "panel" },
+  { id: "tejidos-canastos", label: "Tejidos y Canastos", type: "panel" },
 ];
 
 export const objectsOfPanel: ObjectOfPanel = {
@@ -300,6 +304,157 @@ export const objectsOfPanel: ObjectOfPanel = {
           position: [0, 0, 0],
           rotation: [0, Math.PI, 0],
           scale: 0.9,
+        },
+        detectionRadius: 4,
+      },
+    },
+  ],
+  "caceria-armas": [
+    {
+      id: "nanki",
+      label: "Nanki",
+      type: "object",
+      objectData: {
+        srcObject: "/objects-3D/shuar/caceria-armas/nanki/nanki.glb",
+        description:
+          "Lanza que sirve para matar a hombres y a animales. Generalmente está elaborada en chonta, mide 2 metros de largo por 1,50 cm de diametro. La cabeza tiene en forma prismática y se la suele adornar con plumas de loro.",
+        images: [
+          "/objects-3D/shuar/caceria-armas/nanki/nanki-1.webp",
+          "/objects-3D/shuar/caceria-armas/nanki/nanki-2.webp",
+        ],
+        objectProps: {
+          position: [0, 3, 0],
+          rotation: [0, 0, 0],
+          scale: 0.1,
+        },
+        objectViewProps: {
+          position: [0, 0, -1],
+          rotation: [0, Math.PI, 0],
+          scale: 0.1,
+        },
+        detectionRadius: 4,
+      },
+    },
+    {
+      id: "tantar",
+      label: "Tantar",
+      type: "object",
+      objectData: {
+        srcObject: "/objects-3D/shuar/caceria-armas/tantar/tantar.glb",
+        description:
+          "Escudo utilizado para la defensa y también tiene un fin ceremonial. Se lo obtiene de la raíz externa del Wemp, tiene 60cm de diámetro, en el centro lleva una agarradera de bejuco.",
+        images: [
+          "/objects-3D/shuar/caceria-armas/tantar/tantar-1.webp",
+          "/objects-3D/shuar/caceria-armas/tantar/tantar-2.webp",
+        ],
+        objectProps: {
+          position: [0, -0.4, 1],
+          rotation: [0, Math.PI, 0],
+          scale: 1.3,
+        },
+        objectViewProps: {
+          position: [0, 0, -1],
+          rotation: [0, 0, 0],
+          scale: 2,
+        },
+        detectionRadius: 4,
+      },
+    },
+    {
+      id: "tsantsa",
+      label: "Tsantsa",
+      type: "object",
+      objectData: {
+        srcObject: "/objects-3D/shuar/caceria-armas/tsantsa/tsantsa.glb",
+        description:
+          "La práctica de la reducción de las cabezas ha hecho famosos a los Shuar en todo el mundo. Una vez muerto el enemigo, los Shuar cortaban su cabeza para reducirla y realizar una complicada celebración. Este proceso duraban entre 3 - 4 días y consistía en quitar el cráneo, hacer hervir la cabeza durante 15 minutos, luego coser todos sus orificios, rellenarla de arena y piedritas calientes y dejarla sobre una estaca.",
+        images: [
+          "/objects-3D/shuar/caceria-armas/tsantsa/tsantsa-1.webp",
+          "/objects-3D/shuar/caceria-armas/tsantsa/tsantsa-2.webp",
+          "/objects-3D/shuar/caceria-armas/tsantsa/tsantsa-3.webp",
+          "/objects-3D/shuar/caceria-armas/tsantsa/tsantsa-4.webp",
+          "/objects-3D/shuar/caceria-armas/tsantsa/tsantsa-5.webp",
+          "/objects-3D/shuar/caceria-armas/tsantsa/tsantsa-6.webp",
+          "/objects-3D/shuar/caceria-armas/tsantsa/tsantsa-7.webp",
+        ],
+        objectProps: {
+          position: [0, 1.3, 1],
+          rotation: [0, 0, 0],
+          scale: 0.15,
+        },
+        objectViewProps: {
+          position: [0, -1, 0],
+          rotation: [0, Math.PI, 0],
+          scale: 0.2,
+        },
+        detectionRadius: 4,
+      },
+    },
+  ],
+  "instrumentos-musicales": [
+    {
+      id: "tsantsa",
+      label: "Tsantsa",
+      type: "object",
+      objectData: {
+        srcObject: "/objects-3D/shuar/caceria-armas/tsantsa/tsantsa.glb",
+        description: "La práctica d",
+        images: ["/objects-3D/shuar/caceria-armas/tsantsa/tsantsa-1.webp"],
+        objectProps: {
+          position: [0, 1.3, 1],
+          rotation: [0, 0, 0],
+          scale: 0.15,
+        },
+        objectViewProps: {
+          position: [0, -1, 0],
+          rotation: [0, Math.PI, 0],
+          scale: 0.2,
+        },
+        detectionRadius: 4,
+      },
+    },
+  ],
+  "navegacion-pesca": [
+    {
+      id: "tsantsa",
+      label: "Tsantsa",
+      type: "object",
+      objectData: {
+        srcObject: "/objects-3D/shuar/caceria-armas/tsantsa/tsantsa.glb",
+        description: "La práctica d",
+        images: ["/objects-3D/shuar/caceria-armas/tsantsa/tsantsa-1.webp"],
+        objectProps: {
+          position: [0, 1.3, 1],
+          rotation: [0, 0, 0],
+          scale: 0.15,
+        },
+        objectViewProps: {
+          position: [0, -1, 0],
+          rotation: [0, Math.PI, 0],
+          scale: 0.2,
+        },
+        detectionRadius: 4,
+      },
+    },
+  ],
+  "tejidos-canastos": [
+    {
+      id: "tsantsa",
+      label: "Tsantsa",
+      type: "object",
+      objectData: {
+        srcObject: "/objects-3D/shuar/caceria-armas/tsantsa/tsantsa.glb",
+        description: "La práctica d",
+        images: ["/objects-3D/shuar/caceria-armas/tsantsa/tsantsa-1.webp"],
+        objectProps: {
+          position: [0, 1.3, 1],
+          rotation: [0, 0, 0],
+          scale: 0.15,
+        },
+        objectViewProps: {
+          position: [0, -1, 0],
+          rotation: [0, Math.PI, 0],
+          scale: 0.2,
         },
         detectionRadius: 4,
       },
