@@ -1,4 +1,4 @@
-import { Euler, Vector3 } from "@react-three/fiber";
+import { CameraProps, Euler, Vector3 } from "@react-three/fiber";
 
 export interface ObjectProps {
   position?: Vector3;
@@ -7,18 +7,22 @@ export interface ObjectProps {
 }
 
 export interface ObjectData extends ObjectProps {
-    id: string;
-    label: string;
-    type: "object" | "panel";
-    objectData?: {
-      srcObject: string;
-      groupProps?: ObjectProps;
-      objectProps?: ObjectProps;
-      detectionRadius?: number;
-      description?: string
-      images?: string[]
-    };
-  }
+  id: string;
+  label: string;
+  type: "object" | "panel";
+  objectData?: {
+    srcObject: string;
+    groupProps?: ObjectProps;
+    objectProps?: ObjectProps;
+    objectViewProps?: ObjectProps;
+    detectionRadius?: number;
+    description?: string;
+    images?: string[];
+  };
+  canvasProps?: {
+    camera?: CameraProps;
+  };
+}
 
-  export type Panels = "adornos-corporales" | "alfareria-cocina"
-  export type ObjectOfPanel = Record<string, ObjectData[]>
+export type Panels = "adornos-corporales" | "alfareria-cocina";
+export type ObjectOfPanel = Record<string, ObjectData[]>;

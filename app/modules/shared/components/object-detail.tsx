@@ -1,16 +1,23 @@
 "use-client";
 
-import { Canvas } from "@react-three/fiber";
+import { CameraProps, Canvas } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import { OrbitControls, CameraShake } from "@react-three/drei";
 
 function ObjectDetail({
   children,
+  canvasProps,
 }: Readonly<{
   children: React.ReactNode;
+  canvasProps?: {
+    camera?: CameraProps;
+  };
 }>) {
   return (
-    <Canvas shadows camera={{ fov: 50, position: [0, 2, 10]  }}>
+    <Canvas
+      shadows
+      camera={canvasProps?.camera ?? { fov: 50, position: [0, 2, 10] }}
+    >
       <Environment files="/assets-3D/night.hdr" ground={{ scale: 100 }} />
       <OrbitControls makeDefault />
 

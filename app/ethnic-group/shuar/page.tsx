@@ -24,6 +24,7 @@ const Shuar = () => {
     [breadcrumbList]
   );
 
+
   const handleObjectDetected = (objectDetected: ObjectDetected) => {
     setObjectDetected(objectDetected.isEnter ? objectDetected : null);
   };
@@ -79,7 +80,7 @@ const Shuar = () => {
           )}
 
           {currentDataView?.type === "object" && (
-            <ObjectDetailView src={currentDataView.objectData!.srcObject} />
+            <ObjectDetailView object={currentDataView} />
           )}
         </>
       )}

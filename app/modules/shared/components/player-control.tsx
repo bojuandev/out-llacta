@@ -23,7 +23,7 @@ function PlayerControl(props: PlayerControlProps) {
         <Player
           currentAnimation={props.currentAnimation}
           scale={0.3}
-          position={[0, -0.9, 0]}
+          position={[0, -0.85, 0]}
           playerRef={props.playerRef}
         />
       </Controller>

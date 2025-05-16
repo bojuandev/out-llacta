@@ -2,17 +2,16 @@
 
 import { Gltf } from "@react-three/drei";
 import ObjectDetail from "../../../shared/components/object-detail";
-import { ObjectProps } from "../../../shared/interfaces/object-props";
+import { ObjectData, ObjectProps } from "../../../shared/interfaces/object-props";
 
 interface ObjectDetailViewProps {
-  src: string;
-  properties?: ObjectProps;
+ object: ObjectData
 }
 
-function ObjectDetailView({ src, properties }: ObjectDetailViewProps) {
+function ObjectDetailView({ object }: ObjectDetailViewProps) {
   return (
     <ObjectDetail>
-      <Gltf src={src} {...properties} />
+      <Gltf src={object.objectData!.srcObject} {...object.objectData?.objectViewProps} />
     </ObjectDetail>
   );
 }
