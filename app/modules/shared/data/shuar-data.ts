@@ -27,7 +27,11 @@ export const mainShuarData: ObjectData[] = [
   { id: "adornos-corporales", label: "Adornos corporales", type: "panel" },
   { id: "alfareria-cocina", label: "Alfarería y Cocina", type: "panel" },
   { id: "caceria-armas", label: "Cacería y Armas", type: "panel" },
-  { id: "instrumentos-musicales", label: "Instrumentos musicales", type: "panel" },
+  {
+    id: "instrumentos-musicales",
+    label: "Instrumentos musicales",
+    type: "panel",
+  },
   { id: "navegacion-pesca", label: "Navegación y pesca", type: "panel" },
   { id: "tejidos-canastos", label: "Tejidos y Canastos", type: "panel" },
 ];
@@ -393,22 +397,154 @@ export const objectsOfPanel: ObjectOfPanel = {
   ],
   "instrumentos-musicales": [
     {
-      id: "tsantsa",
-      label: "Tsantsa",
+      id: "kantash",
+      label: "Kantash",
       type: "object",
       objectData: {
-        srcObject: "/objects-3D/shuar/caceria-armas/tsantsa/tsantsa.glb",
-        description: "La práctica d",
-        images: ["/objects-3D/shuar/caceria-armas/tsantsa/tsantsa-1.webp"],
+        srcObject:
+          "/objects-3D/shuar/instrumentos-musicales/kantash/kantash.glb",
+        description:
+          "Rondador que se compone de cinco carrizos verticales, de distintos tamaños, amarrados entre sí.",
+        images: [
+          "/objects-3D/shuar/instrumentos-musicales/kantash/kantash.webp",
+        ],
         objectProps: {
-          position: [0, 1.3, 1],
+          position: [0, -4, -2],
           rotation: [0, 0, 0],
-          scale: 0.15,
+          scale: 3,
         },
         objectViewProps: {
-          position: [0, -1, 0],
+          position: [0, 1, 0],
           rotation: [0, Math.PI, 0],
-          scale: 0.2,
+          scale: 4,
+        },
+        detectionRadius: 4,
+      },
+    },
+    {
+      id: "kitiar",
+      label: "Kitiar",
+      type: "object",
+      objectData: {
+        srcObject: "/objects-3D/shuar/instrumentos-musicales/kitiar/kitiar.glb",
+        description:
+          "Instrumento parecido al violín. Es hecho de cedro y tiene dos cuerdas, hechas de pelos entrelazados con kumai. El arco para tocar es un carrizo templado con tripa de cuy.",
+        images: [
+          "/objects-3D/shuar/instrumentos-musicales/kitiar/kitiar-1.webp",
+          "/objects-3D/shuar/instrumentos-musicales/kitiar/kitiar-2.webp",
+        ],
+        objectProps: {
+          position: [0, 5.5, 6],
+          rotation: [Math.PI / 2, 0, Math.PI],
+          scale: 2,
+        },
+        objectViewProps: {
+          position: [0, 0.3, 0],
+          rotation: [Math.PI / 2, 0, 0],
+          scale: 1.5,
+        },
+        detectionRadius: 4,
+      },
+    },
+    {
+      id: "pinkiui",
+      label: "Pinkiui",
+      type: "object",
+      objectData: {
+        srcObject:
+          "/objects-3D/shuar/instrumentos-musicales/pinkiui/pinkiui.glb",
+        description:
+          "Es una flauta hecha de carrizo o de guadúa. Tiene dos orificios, ubicados a una pulgada de cada extremidad.",
+        images: [
+          "/objects-3D/shuar/instrumentos-musicales/pinkiui/pinkiui-1.webp",
+          "/objects-3D/shuar/instrumentos-musicales/pinkiui/pinkiui-2.webp",
+        ],
+        objectProps: {
+          position: [0, 1, 0],
+          rotation: [0, 0, 0],
+          scale: 1,
+        },
+        objectViewProps: {
+          position: [0, 0.3, 0],
+          rotation: [0, 0, 0],
+          scale: 1,
+        },
+        detectionRadius: 4,
+      },
+    },
+    {
+      id: "tampur",
+      label: "Tampur",
+      type: "object",
+      objectData: {
+        srcObject: "/objects-3D/shuar/instrumentos-musicales/tampur/tampur.glb",
+        description:
+          "Tambor utilizado en los bailes. Se lo fabrica con madera de cedro y con piel de sajino, tigrillo o mono sepúr y se lo amarra con hilo de kumai. Tiene 30cm de diámetro y 30cm de alto.",
+        images: [
+          "/objects-3D/shuar/instrumentos-musicales/tampur/tampur-1.webp",
+          "/objects-3D/shuar/instrumentos-musicales/tampur/tampur-2.webp",
+          "/objects-3D/shuar/instrumentos-musicales/tampur/tampur-3.webp",
+        ],
+        objectProps: {
+          position: [0, -4.8, -2.5],
+          rotation: [0, 0, 0],
+          scale: 3,
+        },
+        objectViewProps: {
+          position: [0, 0.3, 0],
+          rotation: [0, 0, 0],
+          scale: 3,
+        },
+        detectionRadius: 4,
+      },
+    },
+    {
+      id: "tumank",
+      label: "Tumank",
+      type: "object",
+      objectData: {
+        srcObject: "/objects-3D/shuar/instrumentos-musicales/tumank/tumank.glb",
+        description:
+          "Llamado también tsayantur, es un instrumento de carrizo templo con tripas de cuy. Con los labios se modula el sonido y con los dedos se tocan las cuerdas.",
+        images: [
+          "/objects-3D/shuar/instrumentos-musicales/tumank/tumank.webp"
+        ],
+        objectProps: {
+          position: [5, 3.5, -2],
+          rotation: [0, 0, Math.PI/2],
+          scale: 2,
+        },
+        objectViewProps: {
+          position: [0, 0.3, 0],
+          rotation: [0, 0, Math.PI/2],
+          scale: 2,
+        },
+        detectionRadius: 4,
+      },
+    },
+    {
+      id: "tuntui",
+      label: "Tuntui",
+      type: "object",
+      objectData: {
+        srcObject: "/objects-3D/shuar/instrumentos-musicales/tuntui/tuntui.glb",
+        description:
+          "Es un instrumento de madera de shimiut, que se lo utiliza para enviar señales. Mide entre 1 - 1.50 mts y se lo trabaja cuando la madera está aún fresca. Mientras dura su fabricación el hombre debe tener restricción en las comidas y no debe acercarse a las mujeres.",
+        images: [
+          "/objects-3D/shuar/instrumentos-musicales/tuntui/tuntui-1.webp",
+          "/objects-3D/shuar/instrumentos-musicales/tuntui/tuntui-2.webp",
+          "/objects-3D/shuar/instrumentos-musicales/tuntui/tuntui-3.webp",
+          "/objects-3D/shuar/instrumentos-musicales/tuntui/tuntui-4.webp"
+        ],
+        objectProps: {
+          position: [0, -1.2, -1],
+          rotation: [0, 0,0],
+          scale: 1.5,
+        },
+        objectViewProps: {
+          position: [0, 0.3, 0],
+          rotation: [0, 0, 0],
+          scale: 1,
         },
         detectionRadius: 4,
       },
