@@ -506,17 +506,15 @@ export const objectsOfPanel: ObjectOfPanel = {
         srcObject: "/objects-3D/shuar/instrumentos-musicales/tumank/tumank.glb",
         description:
           "Llamado también tsayantur, es un instrumento de carrizo templo con tripas de cuy. Con los labios se modula el sonido y con los dedos se tocan las cuerdas.",
-        images: [
-          "/objects-3D/shuar/instrumentos-musicales/tumank/tumank.webp"
-        ],
+        images: ["/objects-3D/shuar/instrumentos-musicales/tumank/tumank.webp"],
         objectProps: {
           position: [5, 3.5, -2],
-          rotation: [0, 0, Math.PI/2],
+          rotation: [0, 0, Math.PI / 2],
           scale: 2,
         },
         objectViewProps: {
           position: [0, 0.3, 0],
-          rotation: [0, 0, Math.PI/2],
+          rotation: [0, 0, Math.PI / 2],
           scale: 2,
         },
         detectionRadius: 4,
@@ -534,11 +532,11 @@ export const objectsOfPanel: ObjectOfPanel = {
           "/objects-3D/shuar/instrumentos-musicales/tuntui/tuntui-1.webp",
           "/objects-3D/shuar/instrumentos-musicales/tuntui/tuntui-2.webp",
           "/objects-3D/shuar/instrumentos-musicales/tuntui/tuntui-3.webp",
-          "/objects-3D/shuar/instrumentos-musicales/tuntui/tuntui-4.webp"
+          "/objects-3D/shuar/instrumentos-musicales/tuntui/tuntui-4.webp",
         ],
         objectProps: {
           position: [0, -1.2, -1],
-          rotation: [0, 0,0],
+          rotation: [0, 0, 0],
           scale: 1.5,
         },
         objectViewProps: {
@@ -552,22 +550,95 @@ export const objectsOfPanel: ObjectOfPanel = {
   ],
   "navegacion-pesca": [
     {
-      id: "tsantsa",
-      label: "Tsantsa",
+      id: "kanantiu",
+      label: "kanantiu",
       type: "object",
       objectData: {
-        srcObject: "/objects-3D/shuar/caceria-armas/tsantsa/tsantsa.glb",
-        description: "La práctica d",
-        images: ["/objects-3D/shuar/caceria-armas/tsantsa/tsantsa-1.webp"],
+        srcObject: "/objects-3D/shuar/navegacion-pesca/kanantiu/kanantiu.glb",
+        description:
+          "Remo de madera, complementa a Kanu y sirve para dar dirección a la canoa.",
+        images: ["/objects-3D/shuar/navegacion-pesca/kanantiu/kanantiu.webp"],
         objectProps: {
-          position: [0, 1.3, 1],
-          rotation: [0, 0, 0],
-          scale: 0.15,
+          position: [0, 4.2, -2],
+          rotation: [Math.PI / 2, 0, 0],
+          scale: 1,
         },
         objectViewProps: {
-          position: [0, -1, 0],
-          rotation: [0, Math.PI, 0],
-          scale: 0.2,
+          position: [0, 0, 0],
+          rotation: [Math.PI / 2, 0, 0],
+          scale: 1,
+        },
+        detectionRadius: 4,
+      },
+    },
+    {
+      id: "kanu",
+      label: "kanu",
+      type: "object",
+      objectData: {
+        srcObject: "/objects-3D/shuar/navegacion-pesca/kanu/kanu.glb",
+        description:
+          "Canoa Shuar. Se la contruye con madera de cedro, canelo o washik. Primeramente se debe dejar el tronco cierto tiempo en el suelo, para que se seque y no se raje más tarde.",
+        images: ["/objects-3D/shuar/navegacion-pesca/kanu/kanu.webp"],
+        objectProps: {
+          position: [0, 1.1, 0],
+          rotation: [0, 0, 0],
+          scale: 0.5,
+        },
+        objectViewProps: {
+          position: [0, 0, 0],
+          rotation: [0, 0, 0],
+          scale: 0.3,
+        },
+        detectionRadius: 4,
+      },
+    },
+    {
+      id: "neka",
+      label: "Neka",
+      type: "object",
+      objectData: {
+        srcObject: "/objects-3D/shuar/navegacion-pesca/neka/neka.glb",
+        description:
+          "Red de pesca elaborada con piolas de kumai. Tiene mallas romboides de 3-4cm de lado; de 30-40 cm de alto; 10 -12 mts de largo. Se fabrica con trocitos de madera que cumplen la función de flotadores.",
+        images: [
+          "/objects-3D/shuar/navegacion-pesca/neka/neka-1.webp",
+          "/objects-3D/shuar/navegacion-pesca/neka/neka-2.webp",
+        ],
+        objectProps: {
+          position: [0, -0.1, 1],
+          rotation: [-Math.PI /5, 0, 0],
+          scale: 1,
+        },
+        objectViewProps: {
+          position: [0, 0, 0],
+          rotation: [Math.PI /5, 0, 0],
+          scale: 1.3,
+        },
+        detectionRadius: 4,
+      },
+    },
+    {
+      id: "waiakar",
+      label: "Waiakar",
+      type: "object",
+      objectData: {
+        srcObject: "/objects-3D/shuar/navegacion-pesca/waiakar/waiakar.glb",
+        description:
+         "Es una trampa para pescar en riachuelos. Se la fabrica con tiras de pindo, que son amarradas con bejucos.",
+        images: [
+          "/objects-3D/shuar/navegacion-pesca/waiakar/waiakar-1.webp",
+          "/objects-3D/shuar/navegacion-pesca/waiakar/waiakar-2.webp",
+        ],
+        objectProps: {
+          position: [0, 1.2, 0],
+          rotation: [0, 0, 0],
+          scale: 0.7,
+        },
+        objectViewProps: {
+          position: [0, 0, 0],
+          rotation: [0, 0, 0],
+          scale: 0.8,
         },
         detectionRadius: 4,
       },
