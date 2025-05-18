@@ -607,12 +607,12 @@ export const objectsOfPanel: ObjectOfPanel = {
         ],
         objectProps: {
           position: [0, -0.1, 1],
-          rotation: [-Math.PI /5, 0, 0],
+          rotation: [-Math.PI / 5, 0, 0],
           scale: 1,
         },
         objectViewProps: {
           position: [0, 0, 0],
-          rotation: [Math.PI /5, 0, 0],
+          rotation: [Math.PI / 5, 0, 0],
           scale: 1.3,
         },
         detectionRadius: 4,
@@ -625,7 +625,7 @@ export const objectsOfPanel: ObjectOfPanel = {
       objectData: {
         srcObject: "/objects-3D/shuar/navegacion-pesca/waiakar/waiakar.glb",
         description:
-         "Es una trampa para pescar en riachuelos. Se la fabrica con tiras de pindo, que son amarradas con bejucos.",
+          "Es una trampa para pescar en riachuelos. Se la fabrica con tiras de pindo, que son amarradas con bejucos.",
         images: [
           "/objects-3D/shuar/navegacion-pesca/waiakar/waiakar-1.webp",
           "/objects-3D/shuar/navegacion-pesca/waiakar/waiakar-2.webp",
@@ -646,22 +646,145 @@ export const objectsOfPanel: ObjectOfPanel = {
   ],
   "tejidos-canastos": [
     {
-      id: "tsantsa",
-      label: "Tsantsa",
+      id: "chankin",
+      label: "Chankin",
       type: "object",
       objectData: {
-        srcObject: "/objects-3D/shuar/caceria-armas/tsantsa/tsantsa.glb",
-        description: "La práctica d",
-        images: ["/objects-3D/shuar/caceria-armas/tsantsa/tsantsa-1.webp"],
+        srcObject: "/objects-3D/shuar/tejidos-canastos/chankin/chankin.glb",
+        description:
+          "Canasto elaborado con una variedad de bejuco kaap, el cual debe estar maduro. Para su tejido se usa la técnica de enrejado y se lo utiliza para llevar y guardar comida.",
+        images: [
+          "/objects-3D/shuar/tejidos-canastos/chankin/chankin-1.webp",
+          "/objects-3D/shuar/tejidos-canastos/chankin/chankin-2.webp",
+        ],
         objectProps: {
-          position: [0, 1.3, 1],
+          position: [0, -5.5, -2],
           rotation: [0, 0, 0],
-          scale: 0.15,
+          scale: 3,
+        },
+        objectViewProps: {
+          position: [0, 0, 0],
+          rotation: [0, Math.PI, 0],
+          scale: 3,
+        },
+        detectionRadius: 4,
+      },
+    },
+    {
+      id: "itip",
+      label: "Itip",
+      type: "object",
+      objectData: {
+        srcObject: "/objects-3D/shuar/tejidos-canastos/itip/itip.glb",
+        description:
+          "Falda corta de algodón, tejida en un telar. Es usada por los hombres. Si se cosen juntos dos itip, se obtiene un vestido de mujer, tarach.",
+        images: ["/objects-3D/shuar/tejidos-canastos/itip/itip.webp"],
+        objectProps: {
+          position: [-1.4, -0.15, -0],
+          rotation: [0, Math.PI / 2, 0],
+          scale: 1.4,
+        },
+        objectViewProps: {
+          position: [0, 0, 0],
+          rotation: [0, Math.PI / 2, 0],
+          scale: 1,
+        },
+        detectionRadius: 4,
+      },
+    },
+    {
+      id: "kamush",
+      label: "Kamush",
+      type: "object",
+      objectData: {
+        srcObject: "/objects-3D/shuar/tejidos-canastos/kamush/kamush.glb",
+        description:
+          "Corteza que se utiliza para confeccionar las faldas del hombre y la mujer. Una vez sacada la corteza de árbol, se la deja de 5 a 6 días en el agua, después se la golpea y se la recorta de manera regular. Es considerada de una durabilidad inferior y además revela pobreza pereza o debilidad de la familia.",
+        images: [
+          "/objects-3D/shuar/tejidos-canastos/kamush/kamush-1.webp",
+          "/objects-3D/shuar/tejidos-canastos/kamush/kamush-2.webp",
+        ],
+        objectProps: {
+          position: [0, -0.3, -1],
+          rotation: [0, 0, 0],
+          scale: 1.4,
+        },
+        objectViewProps: {
+          position: [0, 0, 0],
+          rotation: [0, 0, 0],
+          scale: 1.5,
+        },
+        detectionRadius: 4,
+      },
+    },
+    {
+      id: "pitiak",
+      label: "Pitiak",
+      type: "object",
+      objectData: {
+        srcObject: "/objects-3D/shuar/tejidos-canastos/pitiak/pitiak.glb",
+        description:
+          "Canasto impermeable, a prueba de insectos. Tiene dos paredes entre las cuales se colocan hojas de plátano y una tapa. Sirve para guardar adornos de plumas y otros artefactos personales.",
+        images: ["/objects-3D/shuar/tejidos-canastos/pitiak/pitiak.webp"],
+        objectProps: {
+          position: [0, -8.1, -3.3],
+          rotation: [0, 0, 0],
+          scale: 4,
+        },
+        objectViewProps: {
+          position: [0, -2, 0],
+          rotation: [0, 0, 0],
+          scale: 4,
+        },
+        detectionRadius: 4,
+      },
+    },
+    {
+      id: "shikiar",
+      label: "Shikiar",
+      type: "object",
+      objectData: {
+        srcObject: "/objects-3D/shuar/tejidos-canastos/shikiar/shikiar.glb",
+        description:
+          "Bolso de malla. Se elabora con piolas de kumai o de wasake. Para su tejido se utiliza un palito de pindo o de guadúa.",
+        images: [
+          "/objects-3D/shuar/tejidos-canastos/shikiar/shikiar-1.webp",
+          "/objects-3D/shuar/tejidos-canastos/shikiar/shikiar-2.webp",
+        ],
+        objectProps: {
+          position: [0, 0, -1],
+          rotation: [0, 0, 0],
+          scale: 1,
+        },
+        objectViewProps: {
+          position: [0, 0, 0],
+          rotation: [0, 0, 0],
+          scale: 2,
+        },
+        detectionRadius: 4,
+      },
+    },
+    {
+      id: "uyunt",
+      label: "Uyunt",
+      type: "object",
+      objectData: {
+        srcObject: "/objects-3D/shuar/tejidos-canastos/uyunt/uyunt.glb",
+        description:
+          "Bolsa más pequeña y apretada, que se elabora con piolas de kumai o de wasake.",
+        images: [
+          "/objects-3D/shuar/tejidos-canastos/uyunt/uyunt-1.webp",
+          "/objects-3D/shuar/tejidos-canastos/uyunt/uyunt-2.webp",
+        ],
+        objectProps: {
+          position: [0, -0.3, -1],
+          rotation: [0, 0, 0],
+          scale: 1,
         },
         objectViewProps: {
           position: [0, -1, 0],
-          rotation: [0, Math.PI, 0],
-          scale: 0.2,
+          rotation: [0, 0, 0],
+          scale: 1,
         },
         detectionRadius: 4,
       },
