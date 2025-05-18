@@ -4,52 +4,40 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="m-auto max-w-5xl">
-      <header className="mb-20 mt-12">
-        <h1 className="text-3xl font-bold text-center">Our Llacta</h1>
-      </header>
-      <div className="flex justify-center">
-        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-          <a href="#">
-            <img
-              className="w-full max-h-80 object-cover rounded-t-lg"
-              src="/portada-out-llacta.webp"
-              alt="portada"
-            />
-          </a>
-          <div className="p-5">
-            <a href="#">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Etnia shuar
-              </h5>
-            </a>
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              Conoce mas sobre la etnia Shuar con este Tour Virtual
-            </p>
-            <Link
-              href="/ethnic-group/shuar"
-              className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Ir al tour virtual
-              <svg
-                className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M1 5h12m0 0L9 1m4 4L9 9"
-                />
-              </svg>
-            </Link>
+    <main className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 my-4">
+      {/* <!-- Grid */}
+      <div className="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center">
+        <div>
+          <h1 className="block text-3xl font-bold text-black-800 sm:text-4xl lg:text-6xl lg:leading-tight dark:text-white">
+            Our <span className="text-blue-600">llacta</span>
+          </h1>
+          <p>
+            Descubre la Riqueza Étnica del Ecuador en una Experiencia Virtual
+            Única
+          </p>
+          <div className="flex h-3 w-48 my-4" role="separator">
+            <div className="w-2/3 bg-yellow-500"></div>
+            <div className="w-1/3 bg-blue-500"></div>
+            <div className="w-1/3 bg-red-500"></div>
           </div>
+          <p className="mt-9 text-xl text-gray-800 dark:text-neutral-400">
+            ¿Listo para explorar la asombrosa diversidad cultural del Ecuador?
+            Este tour virtual te abrirá las puertas a un universo de
+            conocimiento y admiración.
+          </p>
         </div>
+        {/* <!-- End Col */}
+
+        <div className="">
+          <img
+            className="w-full rounded-md"
+            src="https://images.unsplash.com/photo-1665686377065-08ba896d16fd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=700&h=800&q=80"
+            alt="Hero Image"
+          />
+        </div>
+        {/* <!-- End Col */}
       </div>
+      {/* <!-- End Grid */}
     </main>
   );
 }
