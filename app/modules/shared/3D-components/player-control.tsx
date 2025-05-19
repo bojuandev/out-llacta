@@ -1,6 +1,6 @@
 import { KeyboardControls } from "@react-three/drei";
 import Controller from "ecctrl";
-import Player from "@/app/modules/shared/components/player";
+import Player from "@/app/modules/shared/3D-components/player";
 
 interface PlayerControlProps {
   playerRef?: any;

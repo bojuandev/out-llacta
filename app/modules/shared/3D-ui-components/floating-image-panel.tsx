@@ -19,7 +19,7 @@ export default function FloatingImagePanel({
 
   return (
     <>
-      <div className="absolute right-4 md:right-4 top-20 transform flex flex-col gap-1 md:gap-2 p-1 md:p-2 bg-white/40 rounded-full md:rounded overflow-y-scroll max-h-48 md:max-h-[600px]">
+      <div className="absolute right-4 md:right-4 top-20 transform flex flex-col gap-1 md:gap-2 p-1 md:p-2 bg-white/40 rounded-full md:rounded overflow-y-hidden max-h-48 md:max-h-[600px]">
         {imagesList.map((src, index) => (
           <img
             key={index}

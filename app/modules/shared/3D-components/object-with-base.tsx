@@ -1,5 +1,5 @@
 import { Gltf } from "@react-three/drei";
-import CustomRigidBody from "@/app/modules/shared/components/custom-rigid-body";
+import CustomRigidBody from "@/app/modules/shared/3D-components/custom-rigid-body";
 import Cartel from "../../ethnic-group/shuar/main-virtual-tour/components/cartel";
 import { ObjectProps } from "../interfaces/object-props";
 

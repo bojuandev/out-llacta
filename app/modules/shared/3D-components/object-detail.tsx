@@ -1,7 +1,6 @@
 "use-client";
 
 import { CameraProps, Canvas } from "@react-three/fiber";
-import { Environment } from "@react-three/drei";
 import { OrbitControls, CameraShake } from "@react-three/drei";
 
 function ObjectDetail({
@@ -18,7 +17,6 @@ function ObjectDetail({
       shadows
       camera={canvasProps?.camera ?? { fov: 50, position: [0, 2, 10] }}
     >
-      <Environment files="/assets-3D/night.hdr" ground={{ scale: 100 }} />
       <OrbitControls makeDefault />
 
       <directionalLight
@@ -34,10 +32,10 @@ function ObjectDetail({
         position={[20, 20, 20]}
       />
       <directionalLight
-        intensity={0.3}
+        intensity={0.8}
         castShadow
         shadow-bias={-0.0004}
-        position={[0, -1, -1]}
+        position={[0, -1, -10]}
       />
       {children}
 

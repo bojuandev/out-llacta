@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 import { Alert } from "@heroui/alert";
 
-import FloatingImagePanel from "../ui-components/floating-image-panel";
-import Menu from "../ui-components/menu";
+import FloatingImagePanel from "../3D-ui-components/floating-image-panel";
+import Menu from "../3D-ui-components/menu";
 import { ObjectDetected } from "../interfaces/detect-object";
-import ReturnButton from "../ui-components/return-button";
-import ViewMoreWindow from "../ui-components/view-more-window";
-import LoadingScreen from "../ui-components/loading-screen";
+import ReturnButton from "../3D-ui-components/return-button";
+import ViewMoreWindow from "../3D-ui-components/view-more-window";
+import LoadingScreen from "../3D-ui-components/loading-screen";
 
 interface InterfaceLayouyt {
   showReturnButton?: boolean;
@@ -59,11 +59,11 @@ function InterfaceLayout({
 
       {currentObject?.type === "object" && showReturnButton && (
         <>
-          <div className="absolute left-10 md:left-10 bottom-4 md:top-1/2 -translate-y-1/2 transform flex flex-col gap-2 p-2 max-w-80 md:max-w-96">
+          <div className="absolute left-10 md:left-32 bottom-4 md:top-1/2 -translate-y-1/2 transform flex flex-col gap-2 p-2 max-w-80 md:max-w-96">
             <h2 className="text-4xl md:text-7xl text-slate-50">
               {currentObject.label}
             </h2>
-            <p className="text-sm text-slate-50 overflow-y-scroll md:overflow-y-hidden max-h-32 md:max-h-none">
+            <p className="text-sm text-slate-50 overflow-y-scroll md:overflow-y-hidden min-h-20 max-h-32 md:max-h-none">
               {currentObject.objectData?.description}
             </p>
           </div>
@@ -101,7 +101,17 @@ function InterfaceLayout({
           <img
             className="w-12 text-shadow-sm shadow-slate-300"
             src="/bojuan-logo.svg"
-            alt="/bojuan.dev"
+            alt="bojuan.dev"
+          />
+        </a>
+      </div>
+      <div className="absolute bottom-16 md:bottom-8 left-8 flex justify-center gap-2 opacity-50">
+
+        <a href="https://our-llacta.bojuan.dev" target="_blank">
+          <img
+            className="w-12 text-shadow-sm shadow-slate-300"
+            src="/our-llacta-logo.svg"
+            alt="our-llacta-logo"
           />
         </a>
       </div>

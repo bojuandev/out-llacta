@@ -1,5 +1,5 @@
 import { Vector3 } from "three";
-import ObjectWithBase from "@/app/modules/shared/components/object-with-base";
+import ObjectWithBase from "@/app/modules/shared/3D-components/object-with-base";
 import Door from "./door";
 import { ObjectData } from "@/app/modules/shared/interfaces/object-props";
 

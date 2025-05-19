@@ -4,10 +4,10 @@ import { useRef, useState } from "react";
 import { Button } from "@heroui/react";
 import { useJoystickControls } from "ecctrl";
 
-import CanvasEnvironment from "@/app/modules/shared/components/canvas-environment";
-import MainEnvironment from "@/app/modules/shared/components/main-environment";
+import CanvasEnvironment from "@/app/modules/shared/3D-components/canvas-environment";
+import MainEnvironment from "@/app/modules/shared/3D-components/main-environment";
 import ObjectList from "../main-virtual-tour/components/object-list";
-import PlayerControl from "../../../shared/components/player-control";
+import PlayerControl from "../../../shared/3D-components/player-control";
 import { ObjectDetected } from "@/app/modules/shared/interfaces/detect-object";
 import { ObjectData } from "@/app/modules/shared/interfaces/object-props";
 

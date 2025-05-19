@@ -11,11 +11,11 @@ interface CanvasEnvironmentProps {
 function CanvasEnvironment(props: CanvasEnvironmentProps) {
   return (
     <Canvas shadows camera={{ fov: 50 }}>
-      <Environment files="/assets-3D/night.hdr" ground={{ scale: 100 }} />
+      <Environment files="/assets-3D/je_gray_02_1k.hdr" ground={{ scale: 100 }} />
       <ambientLight intensity={1} />
 
       <directionalLight
-        intensity={0.7}
+        intensity={0.1}
         castShadow
         shadow-bias={-0.0004}
         position={[-20, 20, 20]}
