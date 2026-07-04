@@ -16,7 +16,8 @@ AGENTS.md (este archivo)
 ├── docs/02-CODE_CONVENTIONS.md → Convenciones y patrones de codigo
 ├── docs/03-3D_SYSTEM.md         → Sistema 3D (Three.js, Rapier, ecctrl)
 ├── docs/04-DATA_MODELS.md      → Interfaces TypeScript y schemas de datos
-└── docs/05-PROJECT_STRUCTURE.md → Estructura de carpetas y organizacion
+├── docs/05-PROJECT_STRUCTURE.md → Estructura de carpetas y organizacion
+└── docs/06-FSD_ARCHITECTURE.md  → Arquitectura FSD v2.0 (refactor)
 ```
 
 ---
@@ -30,7 +31,6 @@ npm run dev      # Desarrollo con Turbopack (http://localhost:3000)
 npm run build    # Build para produccion
 npm run start    # Iniciar servidor de produccion
 npm run lint     # ESLint via Next.js
-npm run postinstall  # Aplica patches (patch-package)
 ```
 
 ### Entry Points
@@ -44,12 +44,12 @@ npm run postinstall  # Aplica patches (patch-package)
 
 | Categoria | Tecnologia | Version |
 |-----------|------------|---------|
-| Framework | Next.js | 15.3.2 |
+| Framework | Next.js | 15.5.9 |
 | Lenguaje | TypeScript | 5 |
 | UI Library | React | 19.0.0 |
 | 3D Rendering | Three.js + React Three Fiber | 0.176.0 / 9.1.2 |
 | Physics | @react-three/rapier | 2.1.0 |
-| Player Controller | ecctrl | 1.0.92 |
+| Mobile Joystick | nipplejs | 1.0.4 |
 | UI Components | HeroUI (@heroui/react) | 2.7.8 |
 | Styling | Tailwind CSS | 3.4.17 |
 | Animations | Framer Motion | 12.10.1 |
@@ -102,50 +102,53 @@ El proyecto es una aplicacion de contenido cultural estatico que:
 
 ## Important Implementation Notes
 
-### Dependency Patch
-
-El proyecto usa `patch-package` para corregir la libreria `ecctrl`:
-
-- **Patch file:** `patches/ecctrl+1.0.92.patch`
-- **Problema resuelto:** TypeScript strict mode errors en geometrias y materiales
-- **Aplicacion:** Automaticamente via `npm run postinstall`
-
 ### Path Aliases
 
-El proyecto usa el alias `@/*` para imports:
+El proyecto usa el alias `@/*` para imports, apuntando a `src/`:
 
 ```typescript
 // En lugar de:
 import { ObjectData } from "../../../shared/interfaces/object-props";
 
 // Usar:
-import { ObjectData } from "@/app/modules/shared/interfaces/object-props";
+import { ObjectData } from "@/entities/cultural-object";
 ```
+
+### Pending: ecctrl Replacement
+
+El proyecto está en proceso de reemplazar `ecctrl` con un controller custom:
+
+- **Stub actual:** `src/shared/lib/ecctrl-stub.tsx`
+- **Joystick móvil:** `src/features/player-movement/joystick.tsx`
+- **Touch rotación:** `src/features/camera-follow/touch-rotation.tsx`
+- **Controller custom:** Pendiente de implementación
 
 ---
 
 ## Architecture Pattern
 
-El proyecto sigue **Page-Based Routing with Component Composition** usando Next.js App Router:
+El proyecto sigue **Feature-Sliced Design (FSD)** con la estructura:
 
 ```
-app/
-├── page.tsx                     # Landing page
-├── ethnic-group/
-│   └── shuar/
-│       └── page.tsx            # Shuar virtual tour
-└── modules/
-    ├── landing/                # Landing page components
-    ├── ethnic-group/shuar/     # Shuar-specific components
-    │   ├── views/              # PanelView, ObjectDetailView
-    │   └── main-virtual-tour/  # ObjectList, Door, Cartel
-    └── shared/                 # Cross-cutting components
-        ├── 3D-components/      # Canvas, Player, Environment
-        ├── 3D-ui-components/   # Menu, ViewMoreWindow
-        ├── components/         # UI components (Card)
-        ├── data/               # shuar-data.ts
-        ├── interfaces/          # TypeScript interfaces
-        └── layouts/            # InterfaceLayout
+src/
+├── entities/                    # Business entities
+│   ├── player/                 # Player model
+│   ├── cultural-object/       # Cultural artifacts data
+│   └── scene-element/         # Environmental elements
+├── features/                   # User features
+│   ├── player-movement/       # Movement controls
+│   └── camera-follow/         # Camera tracking
+├── widgets/                    # Composed UI blocks
+│   └── ui-overlay/            # Menu, LoadingScreen
+└── shared/                     # Cross-cutting code
+    ├── 3d/                   # 3D utilities
+    ├── ui/                    # UI components
+    └── lib/                   # Libraries, stubs
+
+app/                            # Next.js App Router (legacy)
+├── page.tsx                   # Landing page
+├── ethnic-group/shuar/         # Tour page
+└── modules/                   # Legacy components (pending migration)
 ```
 
 ---
