@@ -9,6 +9,6 @@ export interface SceneElementProps {
 export interface ProximityDetectorProps {
   position?: Vector3;
   detectionRadius?: number;
-  playerRef?: React.Ref<any>;
+  playerPosition?: Vector3;
   onEnterArea?: (isEnter: boolean) => void;
 }

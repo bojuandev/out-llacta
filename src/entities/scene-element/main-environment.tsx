@@ -17,7 +17,7 @@ function getRandomInRange(min: number, max: number): number {
 function generateRandomPosition(range: Range): Vector3 {
   const x = getRandomInRange(range.x[0], range.x[1]);
   const z = getRandomInRange(range.z[0], range.z[1]);
-  return [x, 0, z];
+  return [x, 0, z] as Vector3;
 }
 
 function getRandomObjectPositions(grassNumber: number) {

@@ -3,10 +3,9 @@ import ObjectWithBase from "@/app/modules/shared/3D-components/object-with-base"
 import Door from "./door";
 import { ObjectData } from "@/app/modules/shared/interfaces/object-props";
 
-
 interface ObjectListProps {
   objectsToRender: ObjectData[];
-  playerRef?: any;
+  playerPositionRef?: React.MutableRefObject<Vector3>;
   onEnterArea?: (objectData: ObjectData) => (isEnter: boolean) => void;
 }
 
@@ -14,7 +13,6 @@ function ObjectList(props: ObjectListProps) {
   const getObjectsWithPositions = (): ObjectData[] => {
     const center = new Vector3(0, 0, 0);
     const radius = 10;
-    
 
     return props.objectsToRender.map((object, i) => {
       const angle = (i / props.objectsToRender.length) * Math.PI * 2 + Math.PI / 2;
@@ -30,6 +28,8 @@ function ObjectList(props: ObjectListProps) {
     });
   };
 
+  const playerPosition = props.playerPositionRef?.current;
+
   return (
     <>
       {getObjectsWithPositions().map((object) => {
@@ -40,7 +40,7 @@ function ObjectList(props: ObjectListProps) {
             <Door
               key={id}
               labelDoor={label}
-              playerRef={props.playerRef}
+              playerPosition={playerPosition}
               groupProps={{
                 position,
                 rotation,
@@ -63,7 +63,7 @@ function ObjectList(props: ObjectListProps) {
             }}
             objectProps={object.objectData!.objectProps}
             detectionRadius={4}
-            playerRef={props.playerRef}
+            playerPosition={playerPosition}
             onEnterArea={props.onEnterArea?.(object)}
           />
         );

@@ -3,7 +3,7 @@
 import { RigidBody } from "@react-three/rapier";
 import { CloneProps, Gltf } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, Vector3 as V3Type } from "@react-three/fiber";
 import { Vector3 as V3 } from "three";
 import { ProximityDetectorProps } from "./types";
 
@@ -20,20 +20,11 @@ function ProximityDetector(props: ProximityDetectorExtProps) {
   }, [isInsideArea]);
 
   useFrame(() => {
-    if (!objectRef.current || !props.playerRef) return;
-
-    const playerRefValue = props.playerRef && "current" in props.playerRef
-      ? props.playerRef.current
-      : props.playerRef;
-    if (!playerRefValue) return;
+    if (!objectRef.current || !props.playerPosition) return;
 
     const zoneDoorPos = new V3();
-    const zonePlayerPos = new V3();
-
     const doorPos = (objectRef.current as any).getWorldPosition(zoneDoorPos);
-    const playerPos = (playerRefValue as any).getWorldPosition(
-      zonePlayerPos
-    );
+    const playerPos = props.playerPosition as unknown as V3;
 
     const horizontalDistance = Math.sqrt(
       Math.pow(playerPos.x - doorPos.x, 2) +

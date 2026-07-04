@@ -1,8 +1,8 @@
 import { Gltf } from "@react-three/drei";
+import { Vector3 } from "three";
 import CustomRigidBody from "@/app/modules/shared/3D-components/custom-rigid-body";
 import Cartel from "../../ethnic-group/shuar/main-virtual-tour/components/cartel";
 import { ObjectProps } from "../interfaces/object-props";
-
 
 interface ObjectWithBaseProps {
   srcObject: string;
@@ -10,7 +10,7 @@ interface ObjectWithBaseProps {
   groupProps?: ObjectProps;
   objectProps?: ObjectProps;
   baseProps?: ObjectProps;
-  playerRef?: any;
+  playerPosition?: Vector3;
   detectionRadius?: number;
   onEnterArea?: (isEnter: boolean) => void;
 }
@@ -42,7 +42,7 @@ function ObjectWithBase(props: ObjectWithBaseProps) {
         />
 
         <CustomRigidBody
-          playerRef={props.playerRef}
+          playerPosition={props.playerPosition}
           detectionRadius={props.detectionRadius}
           onEnterArea={props.onEnterArea}
           rigidBody={{

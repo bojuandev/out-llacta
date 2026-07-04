@@ -10,7 +10,7 @@ interface CustomRigidBodyProps {
   rigidBody?: RigidBodyProps;
   gltf: Omit<CloneProps, "object"> & { src: string };
   ref?: React.Ref<any>;
-  playerRef?: any;
+  playerPosition?: V3;
   detectionRadius?: number;
   onEnterArea?: (isEnter: boolean) => void;
 }
@@ -24,15 +24,11 @@ function CustomRigidBody(props: CustomRigidBodyProps) {
   }, [isInsideArea]);
 
   useFrame(() => {
-    if (!objectRef.current || !props.playerRef) return;
+    if (!objectRef.current || !props.playerPosition) return;
 
     const zoneDoorPos = new V3();
-    const zonePlayerPos = new V3();
-
     const doorPos = (objectRef.current as any).getWorldPosition(zoneDoorPos);
-    const playerPos = (props.playerRef.current as any).getWorldPosition(
-      zonePlayerPos
-    );
+    const playerPos = props.playerPosition;
 
     const horizontalDistance = Math.sqrt(
       Math.pow(playerPos.x - doorPos.x, 2) +

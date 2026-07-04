@@ -1,11 +1,11 @@
-import { Vector3 } from "@react-three/fiber";
+import { Vector3 } from "three";
 import CustomRigidBody from "@/app/modules/shared/3D-components/custom-rigid-body";
 import Cartel from "./cartel";
 import { ObjectProps } from "@/app/modules/shared/interfaces/object-props";
 
 interface DoorProps {
   labelDoor?: string;
-  playerRef?: any;
+  playerPosition?: Vector3;
   detectionRadius?: number;
   onEnterArea?: (isEnter: boolean) => void;
   groupProps?: ObjectProps;
@@ -26,7 +26,7 @@ function Door(props: DoorProps) {
           />
         </group>
         <CustomRigidBody
-          playerRef={props.playerRef}
+          playerPosition={props.playerPosition}
           detectionRadius={props.detectionRadius}
           onEnterArea={props.onEnterArea}
           rigidBody={{
