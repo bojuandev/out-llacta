@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { Button } from "@heroui/react";
-import { useJoystickControls } from "ecctrl";
+import { useJoystickControls } from "@/app/modules/shared/lib/ecctrl-stub";
 
 import CanvasEnvironment from "@/app/modules/shared/3D-components/canvas-environment";
 import MainEnvironment from "@/app/modules/shared/3D-components/main-environment";

@@ -1,5 +1,5 @@
 import { KeyboardControls } from "@react-three/drei";
-import Controller from "ecctrl";
+import Controller from "@/app/modules/shared/lib/ecctrl-stub";
 import Player from "@/app/modules/shared/3D-components/player";
 
 interface PlayerControlProps {
