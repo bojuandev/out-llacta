@@ -3,10 +3,11 @@
 import { useRef, useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Physics, RigidBody, CuboidCollider } from "@react-three/rapier";
-import { Environment, KeyboardControls } from "@react-three/drei";
-import { Vector3, BoxGeometry, MeshStandardMaterial } from "three";
+import { Environment, KeyboardControls, Gltf } from "@react-three/drei";
+import { Vector3 } from "three";
 import TestPlayerController, { TestPlayerControllerRef } from "./components/test-player-controller";
 import CameraController from "@/features/player-movement/camera-controller";
+import TestObjectWithBase from "./components/test-object-with-base";
 
 const keyboardMap = [
   { name: "forward", keys: ["ArrowUp", "KeyW"] },
@@ -16,7 +17,14 @@ const keyboardMap = [
 ];
 
 export default function TestPage() {
-  const [meshOffsetY, setMeshOffsetY] = useState(-0.73);
+  const [meshOffsetY, setMeshOffsetY] = useState(-0.75);
+  
+  // Offsets internos ajustables (los que están hardcodeados en ObjectWithBase)
+  const [objectInternalY, setObjectInternalY] = useState(2.5);    // ObjectWithBase: Gltf position={[0, 2.5, 1]}
+  const [cartelInternalY, setCartelInternalY] = useState(1.5);    // ObjectWithBase: Cartel position={[0, 1.5, -0.8]}
+  const [tableInternalY, setTableInternalY] = useState(0.3);     // ObjectWithBase: table position={[-1.85, 0.3, 0]}
+  const [grassY, setGrassY] = useState(0);                      // Grass offset
+  
   const [debugData, setDebugData] = useState({
     robotRbPos: { x: 0, y: 0, z: 0 },
     robotMeshOffset: { x: 0, y: -0.50, z: 0 },
@@ -77,81 +85,66 @@ export default function TestPage() {
             {/* Simple green ground plane */}
             <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
               <planeGeometry args={[200, 200]} />
-              <meshStandardMaterial color="#4a7c4e" />
+              <meshStandardMaterial color="#4CAF50" />
             </mesh>
 
             {/* Player */}
-            <TestPlayerController ref={playerRef} cameraYawRef={cameraYawRef} positionRef={positionRef} meshOffsetY={meshOffsetY} />
+            <TestPlayerController 
+              ref={playerRef} 
+              cameraYawRef={cameraYawRef} 
+              positionRef={positionRef} 
+              meshOffsetY={meshOffsetY} 
+            />
 
-            {/* Obstacle to test collisions - Box 1x1x1 at z=5 */}
-            <RigidBody type="fixed" position={[0, 0.5, 5]}>
+            {/* Caja roja para test de colisiones */}
+            <RigidBody type="fixed" position={[5, 0.5, 5]}>
               <CuboidCollider args={[0.5, 0.5, 0.5]} />
               <mesh castShadow receiveShadow>
                 <boxGeometry args={[1, 1, 1]} />
                 <meshStandardMaterial color="red" />
               </mesh>
             </RigidBody>
+
+            {/* HIERBA - separada en x=-10, z=0 */}
+            <group position={[-10, 0, 0]}>
+              <Gltf 
+                src="/objects-3D/commons/grass-1.glb" 
+                scale={1}
+                position={[0, grassY, 0]} 
+              />
+            </group>
+
+            {/* HOMBRE SHUAR COMPLETO - usando TestObjectWithBase con offsets ajustables */}
+            <TestObjectWithBase
+              srcObject="/objects-3D/shuar/hombre-shuar/hombre-shuar.glb"
+              labelObject="Hombre Shuar"
+              groupProps={{ position: [0, 0, 0], rotation: [0, 0, 0], scale: 1 }}
+              objectInternalY={objectInternalY}
+              cartelInternalY={cartelInternalY}
+              tableInternalY={tableInternalY}
+            />
+
           </Physics>
         </KeyboardControls>
       </Canvas>
 
       {/* Debug UI Panel */}
-      <div className="absolute top-4 left-4 bg-black/80 text-white p-4 rounded font-mono text-sm w-80">
+      <div className="absolute top-4 left-4 bg-black/90 text-white p-4 rounded font-mono text-sm w-96 max-h-[90vh] overflow-y-auto">
         <h2 className="font-bold mb-3 text-lg border-b border-white/30 pb-2">
-          🧪 TEST SANDBOX
+          🧪 OBJECT HEIGHT ADJUSTER
         </h2>
 
         {/* Robot Section */}
-        <div className="mb-4">
+        <div className="mb-4 p-2 bg-gray-800 rounded">
           <h3 className="font-bold text-yellow-400 mb-1">ROBOT</h3>
-          <div className="grid grid-cols-2 gap-x-4 text-xs">
+          <div className="grid grid-cols-2 gap-x-4 text-xs mb-2">
             <div className="text-gray-400">RigidBody Y:</div>
             <div>{debugData.robotRbPos.y.toFixed(3)}</div>
-
-            <div className="text-gray-400">Mesh Offset Y:</div>
-            <div>{debugData.robotMeshOffset.y.toFixed(3)}</div>
-
             <div className="text-gray-400">Mesh World Y:</div>
             <div>{debugData.robotMeshWorld.y.toFixed(3)}</div>
-
             <div className="text-gray-400">Capsule Bottom:</div>
             <div>{debugData.capsuleBottom.toFixed(3)}</div>
           </div>
-        </div>
-
-        {/* Floor Section */}
-        <div className="mb-4">
-          <h3 className="font-bold text-green-400 mb-1">FLOOR</h3>
-          <div className="grid grid-cols-2 gap-x-4 text-xs">
-            <div className="text-gray-400">Collider Y:</div>
-            <div>{debugData.floorColliderY.toFixed(2)}</div>
-
-            <div className="text-gray-400">HalfHeight:</div>
-            <div>{debugData.floorColliderHalfHeight.toFixed(2)}</div>
-
-            <div className="text-gray-400">Top Surface:</div>
-            <div>{debugData.floorTop.toFixed(2)}</div>
-          </div>
-        </div>
-
-        {/* Penetration Section */}
-        <div className="mb-4">
-          <h3 className="font-bold mb-1">
-            <span className={debugData.penetration > 0 ? "text-red-400" : "text-green-400"}>
-              {debugData.penetration > 0 ? "❌ PENETRATION" : "✅ NO PENETRATION"}
-            </span>
-          </h3>
-          <div className="text-xs">
-            <span className="text-gray-400">Distance: </span>
-            <span className={debugData.penetration > 0 ? "text-red-400" : "text-green-400"}>
-              {debugData.penetration.toFixed(4)}m
-            </span>
-          </div>
-        </div>
-
-        {/* Adjust Offset Section */}
-        <div className="mb-4 p-2 bg-gray-800 rounded">
-          <h3 className="font-bold text-purple-400 mb-1 text-xs">ADJUST MESH OFFSET</h3>
           <div className="flex items-center gap-2">
             <input
               type="range"
@@ -164,33 +157,109 @@ export default function TestPage() {
             />
             <span className="text-xs font-mono w-12 text-right">{meshOffsetY.toFixed(2)}</span>
           </div>
-          <div className="text-xs text-gray-500 mt-1">
-            Drag slider to adjust robot height
+        </div>
+
+        {/* ObjectWithBase Section */}
+        <div className="space-y-3 mb-4">
+          <h3 className="font-bold text-orange-400 border-b border-white/20 pb-1">
+            HOMBRE SHUAR (ObjectWithBase)
+          </h3>
+          
+          <div className="p-2 bg-gray-800/50 rounded">
+            <div className="flex justify-between items-center mb-1">
+              <span className="text-xs font-bold">👤 objectInternalY</span>
+              <span className="text-xs font-mono text-yellow-400">Y: {objectInternalY.toFixed(2)}</span>
+            </div>
+            <input
+              type="range"
+              min={0}
+              max={5}
+              step="0.01"
+              value={objectInternalY}
+              onChange={(e) => setObjectInternalY(parseFloat(e.target.value))}
+              className="w-full"
+            />
+            <div className="text-xs text-gray-500">
+              {`Gltf position={[0, ${objectInternalY.toFixed(2)}, 1]}`}
+            </div>
+          </div>
+
+          <div className="p-2 bg-gray-800/50 rounded">
+            <div className="flex justify-between items-center mb-1">
+              <span className="text-xs font-bold">🏷️ cartelInternalY</span>
+              <span className="text-xs font-mono text-yellow-400">Y: {cartelInternalY.toFixed(2)}</span>
+            </div>
+            <input
+              type="range"
+              min={0}
+              max={5}
+              step="0.01"
+              value={cartelInternalY}
+              onChange={(e) => setCartelInternalY(parseFloat(e.target.value))}
+              className="w-full"
+            />
+            <div className="text-xs text-gray-500">
+              {`Cartel position={[0, ${cartelInternalY.toFixed(2)}, -0.8]}`}
+            </div>
+          </div>
+
+          <div className="p-2 bg-gray-800/50 rounded">
+            <div className="flex justify-between items-center mb-1">
+              <span className="text-xs font-bold">🪑 tableInternalY</span>
+              <span className="text-xs font-mono text-yellow-400">Y: {tableInternalY.toFixed(2)}</span>
+            </div>
+            <input
+              type="range"
+              min={-2}
+              max={2}
+              step="0.01"
+              value={tableInternalY}
+              onChange={(e) => setTableInternalY(parseFloat(e.target.value))}
+              className="w-full"
+            />
+            <div className="text-xs text-gray-500">
+              {`Table position={[-1.85, ${tableInternalY.toFixed(2)}, 0]}`}
+            </div>
           </div>
         </div>
 
-        {/* Keys Section */}
-        <div className="mb-4">
-          <h3 className="font-bold text-blue-400 mb-1">KEYS</h3>
-          <div className="flex gap-2">
-            {[
-              { key: "w", label: "W", active: debugData.keys.w },
-              { key: "a", label: "A", active: debugData.keys.a },
-              { key: "s", label: "S", active: debugData.keys.s },
-              { key: "d", label: "D", active: debugData.keys.d },
-            ].map(({ key, label, active }) => (
-              <div
-                key={key}
-                className={`w-8 h-8 rounded flex items-center justify-center text-xs font-bold border ${
-                  active
-                    ? "bg-blue-500 border-blue-400 text-white"
-                    : "bg-gray-700 border-gray-600 text-gray-400"
-                }`}
-              >
-                {label}
-              </div>
-            ))}
+        {/* Hierba Section */}
+        <div className="mb-4 p-2 bg-gray-800/50 rounded">
+          <h3 className="font-bold text-green-400 mb-1 text-xs">HIERBA (x=-10)</h3>
+          <div className="flex items-center gap-2">
+            <input
+              type="range"
+              min={-2}
+              max={2}
+              step="0.01"
+              value={grassY}
+              onChange={(e) => setGrassY(parseFloat(e.target.value))}
+              className="flex-1"
+            />
+            <span className="text-xs font-mono w-12 text-right">{grassY.toFixed(2)}</span>
           </div>
+          <div className="text-xs text-gray-500">
+            Offset aplicado al grupo (original tenía y=0.3 interno)
+          </div>
+        </div>
+
+        {/* Copy Values Button */}
+        <div className="mt-4 p-2 bg-gray-800 rounded">
+          <button
+            onClick={() => {
+              const values = [
+                `objectInternalY: ${objectInternalY.toFixed(2)}`,
+                `cartelInternalY: ${cartelInternalY.toFixed(2)}`,
+                `tableInternalY: ${tableInternalY.toFixed(2)}`,
+                `grassY: ${grassY.toFixed(2)}`,
+              ].join('\n');
+              navigator.clipboard.writeText(values);
+              alert('Valores copiados al clipboard!');
+            }}
+            className="w-full bg-blue-600 hover:bg-blue-500 text-white py-2 px-4 rounded text-xs font-bold"
+          >
+            📋 COPY ALL VALUES
+          </button>
         </div>
 
         {/* Legend */}

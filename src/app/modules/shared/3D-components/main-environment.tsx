@@ -57,7 +57,7 @@ function MainEnvironment() {
         <Gltf
           src="/objects-3D/commons/grass-1.glb"
           scale={1}
-          position={[-64, 0.3, 0]}
+          position={[-64, 0, 0]}
         />
       </group>
     );
@@ -73,7 +73,7 @@ function MainEnvironment() {
           gltf={{
             src: "/objects-3D/commons/rocks.glb",
             scale: 3,
-            position: [0, 1, 0],
+            position: [0, 0.7, 0],
           }}
         />
       </group>

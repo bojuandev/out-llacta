@@ -27,7 +27,7 @@ function ObjectWithBase(props: ObjectWithBaseProps) {
         rotation={props.objectProps?.rotation}
         scale={props.objectProps?.scale}
       >
-        <Gltf position={[0, 2.5, 1]} scale={0.7} src={props.srcObject} />
+        <Gltf position={[0, 2.2, 1]} scale={0.7} src={props.srcObject} />
       </group>
       <group
         position={props.baseProps?.position}
@@ -36,7 +36,7 @@ function ObjectWithBase(props: ObjectWithBaseProps) {
       >
         <Cartel
           label={props.labelObject}
-          position={[0, 1.5, -0.8]}
+          position={[0, 1.2, -0.8]}
           rotation={[0, 0, 0]}
           scale={0.8}
         />
@@ -52,7 +52,7 @@ function ObjectWithBase(props: ObjectWithBaseProps) {
           }}
           gltf={{
             scale: 7,
-            position: [-1.85, 0.3, 0],
+            position: [-1.85, 0, 0],
             src: "/objects-3D/commons/table-coffee-square.glb",
           }}
         />

@@ -53,7 +53,7 @@ function MainEnvironment() {
         <Gltf
           src="/objects-3D/commons/grass-1.glb"
           scale={1}
-          position={[-64, 0.3, 0]}
+          position={[-64, -30.0, 0]}
         />
       </group>
     );
