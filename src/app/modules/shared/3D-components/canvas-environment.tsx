@@ -7,12 +7,22 @@ import { Environment, KeyboardControls } from "@react-three/drei";
 import { Vector3 } from "three";
 import PlayerController from "@/features/player-movement/player-controller";
 import CameraController from "@/features/player-movement/camera-controller";
+import JoystickMovement from "@/features/player-movement/joystick";
+import TouchRotation from "@/features/camera-follow/touch-rotation";
 
 interface CanvasEnvironmentProps {
   children: React.ReactNode;
   currentAnimation: "Idle" | "Walking";
   onAnimationChange: (name: string, pressed: boolean) => void;
   playerPositionRef?: React.MutableRefObject<Vector3>;
+  keysRef?: React.MutableRefObject<{
+    forward: boolean;
+    backward: boolean;
+    leftward: boolean;
+    rightward: boolean;
+  }>;
+  cameraYawRef?: React.MutableRefObject<number>;
+  cameraPitchRef?: React.MutableRefObject<number>;
 }
 
 const keyboardMap = [
@@ -27,17 +37,26 @@ export default function CanvasEnvironment({
   currentAnimation,
   onAnimationChange,
   playerPositionRef,
+  keysRef: externalKeysRef,
+  cameraYawRef: externalCameraYawRef,
+  cameraPitchRef: externalCameraPitchRef,
 }: CanvasEnvironmentProps) {
   const internalPositionRef = useRef(new Vector3(0, 0.75, 0));
   const positionRef = playerPositionRef ?? internalPositionRef;
-  const cameraYawRef = useRef(Math.PI);
-  const cameraPitchRef = useRef(0);
-  const keysRef = useRef({
+  
+  const internalCameraYawRef = useRef(Math.PI);
+  const cameraYawRef = externalCameraYawRef ?? internalCameraYawRef;
+  
+  const internalCameraPitchRef = useRef(0);
+  const cameraPitchRef = externalCameraPitchRef ?? internalCameraPitchRef;
+  
+  const internalKeysRef = useRef({
     forward: false,
     backward: false,
     leftward: false,
     rightward: false,
   });
+  const keysRef = externalKeysRef ?? internalKeysRef;
 
   const handleKeyChange = (name: string, pressed: boolean) => {
     if (name === "forward") keysRef.current.forward = pressed;

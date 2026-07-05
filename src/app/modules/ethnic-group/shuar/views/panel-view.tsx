@@ -4,6 +4,13 @@ import { useState, useRef } from "react";
 import CanvasEnvironment from "@/app/modules/shared/3D-components/canvas-environment";
 import MainEnvironment from "@/app/modules/shared/3D-components/main-environment";
 import ObjectList from "../main-virtual-tour/components/object-list";
+import dynamic from "next/dynamic";
+import { useIsMobile } from "@/shared/hooks/use-is-mobile";
+
+const MobileControls = dynamic(
+  () => import("@/features/player-movement/mobile-controls"),
+  { ssr: false }
+);
 import { ObjectDetected } from "@/app/modules/shared/interfaces/detect-object";
 import { ObjectData } from "@/app/modules/shared/interfaces/object-props";
 import { Vector3 } from "three";
@@ -25,6 +32,15 @@ function PanelView({
     "Idle"
   );
   const positionRef = useRef(new Vector3(0, 0.75, 0));
+  const keysRef = useRef({
+    forward: false,
+    backward: false,
+    leftward: false,
+    rightward: false,
+  });
+  const cameraYawRef = useRef(Math.PI);
+  const cameraPitchRef = useRef(0);
+  const isMobile = useIsMobile();
 
   const handleAnimationChange = (name: string, pressed: boolean) => {
     const movements = ["forward", "backward", "leftward", "rightward"];
@@ -42,18 +58,31 @@ function PanelView({
   };
 
   return (
-    <CanvasEnvironment
-      playerPositionRef={positionRef}
-      currentAnimation={currentAnimation}
-      onAnimationChange={handleAnimationChange}
-    >
-      <MainEnvironment />
-      <ObjectList
+    <>
+      <CanvasEnvironment
         playerPositionRef={positionRef}
-        onEnterArea={handleEnterArea}
-        objectsToRender={objectsOfPanel}
-      />
-    </CanvasEnvironment>
+        keysRef={keysRef}
+        cameraYawRef={cameraYawRef}
+        cameraPitchRef={cameraPitchRef}
+        currentAnimation={currentAnimation}
+        onAnimationChange={handleAnimationChange}
+      >
+        <MainEnvironment />
+        <ObjectList
+          playerPositionRef={positionRef}
+          onEnterArea={handleEnterArea}
+          objectsToRender={objectsOfPanel}
+        />
+      </CanvasEnvironment>
+      {isMobile && (
+        <MobileControls
+          keysRef={keysRef}
+          cameraYawRef={cameraYawRef}
+          cameraPitchRef={cameraPitchRef}
+          onAnimationChange={handleAnimationChange}
+        />
+      )}
+    </>
   );
 }
 
