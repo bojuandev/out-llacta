@@ -15,20 +15,18 @@ function Cover() {
       {/* Desktop: overlapping composition */}
       <div className="hidden md:block relative w-full h-full max-w-xl mx-auto">
         {/* Shuar Photo - upper area, slightly right */}
-        <div className="absolute top-4 left-1/2 -translate-x-1/4">
+        <div className="absolute top-4 left-1/2 -translate-x-1/4 animate-fade-in" style={{ animationDelay: "0.2s" }}>
           <img
-            className="rounded-3xl h-80 lg:h-96 w-auto shadow-2xl shadow-black/20 object-cover animate-fade-in"
-            style={{ animationDelay: "0.2s" }}
+            className="rounded-3xl h-80 lg:h-96 w-auto shadow-2xl shadow-black/20 object-cover animate-float"
             src="/images/shuar-photo.webp"
             alt="Cultura Shuar"
           />
         </div>
 
         {/* Robot Photo - lower area, slightly left */}
-        <div className="absolute bottom-16 left-1/2 -translate-x-3/4">
+        <div className="absolute bottom-16 left-1/2 -translate-x-3/4 animate-fade-in" style={{ animationDelay: "0.5s" }}>
           <img
-            className="rounded-3xl h-64 lg:h-72 w-auto object-cover animate-fade-in"
-            style={{ animationDelay: "0.5s" }}
+            className="rounded-3xl h-64 lg:h-72 w-auto object-cover animate-float-slow"
             src="/images/robot-2.webp"
             alt="Tour Virtual 3D"
           />
