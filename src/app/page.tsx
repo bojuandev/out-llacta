@@ -4,7 +4,7 @@ import Cover from "./modules/landing/components/cover";
 export default function Home() {
   return (
     <main className="h-screen w-full overflow-hidden flex flex-col justify-center items-center px-4 relative bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
-      <div className="max-w-[85rem] w-full mx-auto flex flex-col md:flex-row gap-8 md:gap-12 items-center justify-center">
+      <div className="max-w-[85rem] w-full mx-auto flex flex-col-reverse md:flex-row gap-6 md:gap-12 items-center justify-center">
         {/* Left Content - SEO Static HTML */}
         <div className="w-full md:w-2/5 flex flex-col items-center md:items-start text-center md:text-left z-10">
           {/* Logo + Title */}
@@ -13,18 +13,18 @@ export default function Home() {
             style={{ animationDelay: "0.2s", animationFillMode: "both" }}
           >
             <img
-              className="h-28 md:h-36 drop-shadow-lg"
+              className="h-20 md:h-36 drop-shadow-lg"
               src="/our-llacta-logo.svg"
               alt="logo-our-llacta"
             />
-            <h1 className="mt-4 text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800 dark:text-white leading-tight">
+            <h1 className="mt-2 md:mt-4 text-4xl md:text-6xl lg:text-7xl font-bold text-gray-800 dark:text-white leading-tight">
               Our <span className="text-blue-600">llacta</span>
             </h1>
           </div>
 
           {/* Separator */}
           <div
-            className="flex h-1.5 w-48 my-5 mx-auto md:mx-0 rounded-full overflow-hidden animate-fade-in-up"
+            className="flex h-1.5 w-48 my-3 md:my-5 mx-auto md:mx-0 rounded-full overflow-hidden animate-fade-in-up"
             style={{ animationDelay: "0.35s", animationFillMode: "both" }}
             role="separator"
           >
@@ -35,37 +35,35 @@ export default function Home() {
 
           {/* Tagline */}
           <p
-            className="text-sm md:text-base text-gray-600 dark:text-gray-300 font-medium tracking-wide uppercase animate-fade-in-up"
+            className="text-xs md:text-base text-gray-600 dark:text-gray-300 font-medium tracking-wide uppercase animate-fade-in-up"
             style={{ animationDelay: "0.4s", animationFillMode: "both" }}
           >
-            Descubre la Riqueza Ancestral del Ecuador en una Experiencia Virtual
+            Descubre la Riqueza Ancestral de la Etnia Shuar en una Experiencia Virtual Inmersiva
           </p>
 
           {/* Main Copy */}
           <p
-            className="mt-6 text-lg md:text-xl lg:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed max-w-lg animate-fade-in-up"
+            className="mt-3 md:mt-6 text-base md:text-xl lg:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed max-w-lg animate-fade-in-up"
             style={{ animationDelay: "0.55s", animationFillMode: "both" }}
           >
-            Sumérgete en el latido ancestral de Ecuador. Cada rincón guarda una
-            historia, cada etnia es un universo de sabiduría milenaria.
+            Adéntrate en el corazón de la Amazonía y descubre el alma de la Etnia Shuar. Un pueblo de guerreros y guardianes que protege los secretos de la selva y una sabiduría que ha resistido el paso de los siglos.
           </p>
 
           <p
-            className="mt-3 text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-lg animate-fade-in-up"
+            className="mt-2 md:mt-3 text-sm md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-lg animate-fade-in-up"
             style={{ animationDelay: "0.65s", animationFillMode: "both" }}
           >
-            Aquí, la tierra habla, la selva canta y las tradiciones vivas te
-            invitan a descubrir lo que ningún libro puede enseñarte.
+            Atrévete a cruzar el umbral de lo desconocido. Este recorrido virtual te llevará por senderos de historia, tradición y espiritualidad que despertarán tu espíritu de explorador.
           </p>
 
           {/* CTA Button */}
           <div
-            className="mt-8 animate-fade-in-up"
+            className="mt-5 md:mt-8 animate-fade-in-up"
             style={{ animationDelay: "0.8s", animationFillMode: "both" }}
           >
             <Link href="/ethnic-group/shuar">
-              <button className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 text-lg font-semibold text-white bg-blue-600 rounded-full shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition-all hover:scale-105 hover:shadow-blue-500/50 overflow-hidden">
-                <span className="relative z-10">Iniciar Recorrido Virtual</span>
+              <button className="group relative inline-flex items-center justify-center gap-3 px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold text-white bg-blue-600 rounded-full shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition-all hover:scale-105 hover:shadow-blue-500/50 overflow-hidden">
+                <span className="relative z-10">Explorar la Etnia Shuar</span>
                 <svg
                   className="w-5 h-5 relative z-10 transition-transform group-hover:translate-x-1"
                   fill="none"
@@ -87,7 +85,7 @@ export default function Home() {
 
           {/* Credit */}
           <div
-            className="mt-6 flex items-center gap-2 animate-fade-in-up"
+            className="mt-4 md:mt-6 flex items-center gap-2 animate-fade-in-up"
             style={{ animationDelay: "0.95s", animationFillMode: "both" }}
           >
             <span className="text-sm text-gray-500 dark:text-gray-400">
@@ -105,7 +103,7 @@ export default function Home() {
         </div>
 
         {/* Right: Cover Images */}
-        <div className="w-full md:w-3/5 h-[300px] md:h-[500px]">
+        <div className="w-full md:w-3/5 h-[180px] md:h-[500px] flex-shrink-0 relative z-0">
           <Cover />
         </div>
       </div>
