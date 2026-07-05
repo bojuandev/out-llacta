@@ -3,7 +3,7 @@ import Cover from "./modules/landing/components/cover";
 
 export default function Home() {
   return (
-    <main className="h-screen w-full overflow-hidden flex flex-col justify-center items-center px-4 relative bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
+    <main className="h-screen w-full overflow-hidden flex flex-col justify-center items-center px-6 md:px-12 lg:px-16 relative bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
       <div className="max-w-[85rem] w-full mx-auto flex flex-col-reverse md:flex-row gap-6 md:gap-12 items-center justify-center">
         {/* Left Content - SEO Static HTML */}
         <div className="w-full md:w-2/5 flex flex-col items-center md:items-start text-center md:text-left z-10">
