@@ -9,6 +9,7 @@ interface PlayerProps {
   position?: Vector3;
   rotation?: Vector3;
   scale?: number;
+  visible?: boolean;
 }
 
 const Player = forwardRef<any, PlayerProps>(function Player(props, ref) {
@@ -39,6 +40,7 @@ const Player = forwardRef<any, PlayerProps>(function Player(props, ref) {
       position={props.position}
       rotation={props.rotation}
       scale={props.scale}
+      visible={props.visible}
     />
   );
 });

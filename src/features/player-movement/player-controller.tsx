@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { RigidBody, CapsuleCollider } from "@react-three/rapier";
 import { Vector3, Quaternion, Euler } from "three";
@@ -34,6 +34,7 @@ export default function PlayerController({
   const rigidBodyRef = useRef<any>(null);
   const meshRef = useRef<any>(null);
   const isMovingRef = useRef(false);
+  const [isReady, setIsReady] = useState(false);
 
   useFrame(() => {
     const { forward, backward, leftward, rightward } = keysRef.current;
@@ -100,6 +101,17 @@ export default function PlayerController({
     }
   });
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (rigidBodyRef.current) {
+        rigidBodyRef.current.setTranslation({ x: 0, y: 0.75, z: 0 }, true);
+        rigidBodyRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
+      }
+      setIsReady(true);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <RigidBody
       ref={rigidBodyRef}
@@ -115,7 +127,8 @@ export default function PlayerController({
         ref={meshRef}
         currentAnimation={currentAnimation}
         scale={0.3}
-        position={[0, -0.35, 0]}
+        position={[0, -0.75, 0]}
+        visible={isReady}
       />
     </RigidBody>
   );

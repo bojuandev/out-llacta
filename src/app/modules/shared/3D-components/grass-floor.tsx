@@ -1,14 +1,13 @@
-"use-client"
+"use client"
 
-import { RigidBody } from "@react-three/rapier";
-import { Gltf } from "@react-three/drei";
 import { ObjectProps } from "../interfaces/object-props";
 
 function GrassFloor(props: ObjectProps) {
   return (
-    <RigidBody type="fixed" colliders="trimesh" {...props}>
-      <Gltf src="/objects-3D/commons/grass-tile.glb" />
-    </RigidBody>
+    <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow {...props}>
+      <planeGeometry args={[200, 200]} />
+      <meshStandardMaterial color="#4CAF50" />
+    </mesh>
   );
 }
 

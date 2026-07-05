@@ -78,7 +78,7 @@ function MainEnvironment() {
 
   return (
     <group>
-      <GrassFloor scale={[30, 2, 30]} />
+      <GrassFloor />
 
       {littleRock([2, 0, 9])}
       {littleRock([-2, 0, -10])}

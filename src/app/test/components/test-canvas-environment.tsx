@@ -7,13 +7,7 @@ import { Environment, KeyboardControls } from "@react-three/drei";
 import { Vector3 } from "three";
 import PlayerController from "@/features/player-movement/player-controller";
 import CameraController from "@/features/player-movement/camera-controller";
-
-interface CanvasEnvironmentProps {
-  children: React.ReactNode;
-  currentAnimation: "Idle" | "Walking";
-  onAnimationChange: (name: string, pressed: boolean) => void;
-  playerPositionRef?: React.MutableRefObject<Vector3>;
-}
+import GrassFloor from "@/entities/scene-element/grass-floor";
 
 const keyboardMap = [
   { name: "forward", keys: ["ArrowUp", "KeyW"] },
@@ -22,14 +16,18 @@ const keyboardMap = [
   { name: "rightward", keys: ["ArrowRight", "KeyD"] },
 ];
 
-export default function CanvasEnvironment({
+interface TestCanvasEnvironmentProps {
+  children: React.ReactNode;
+  onAnimationChange?: (name: string, pressed: boolean) => void;
+  onDebugData?: (data: any) => void;
+}
+
+export default function TestCanvasEnvironment({
   children,
-  currentAnimation,
   onAnimationChange,
-  playerPositionRef,
-}: CanvasEnvironmentProps) {
-  const internalPositionRef = useRef(new Vector3(0, 0.75, 0));
-  const positionRef = playerPositionRef ?? internalPositionRef;
+  onDebugData,
+}: TestCanvasEnvironmentProps) {
+  const positionRef = useRef(new Vector3(0, 0.75, 0));
   const cameraYawRef = useRef(Math.PI);
   const cameraPitchRef = useRef(0);
   const keysRef = useRef({
@@ -44,6 +42,7 @@ export default function CanvasEnvironment({
     if (name === "backward") keysRef.current.backward = pressed;
     if (name === "leftward") keysRef.current.leftward = pressed;
     if (name === "rightward") keysRef.current.rightward = pressed;
+    onAnimationChange?.(name, pressed);
   };
 
   return (
@@ -54,7 +53,6 @@ export default function CanvasEnvironment({
           ground={{ scale: 100 }}
         />
         <ambientLight intensity={1} />
-
         <directionalLight
           intensity={0.1}
           castShadow
@@ -70,18 +68,23 @@ export default function CanvasEnvironment({
           cameraPitchRef={cameraPitchRef}
         />
 
-        <Physics timeStep={1/60} gravity={[0, -20, 0]}>
+        <Physics timeStep={1 / 60} gravity={[0, -20, 0]}>
+          {/* Ground plane collider */}
           <RigidBody type="fixed" position={[0, -0.1, 0]}>
             <CuboidCollider args={[100, 0.1, 100]} />
           </RigidBody>
+
+            {/* Visual grass floor */}
+            <GrassFloor />
+
+          {/* Player */}
           <PlayerController
-            currentAnimation={currentAnimation}
-            onAnimationChange={onAnimationChange}
+            currentAnimation="Idle"
+            onAnimationChange={handleKeyChange}
             positionRef={positionRef}
             cameraYawRef={cameraYawRef}
             keysRef={keysRef}
           />
-          {children}
         </Physics>
       </KeyboardControls>
     </Canvas>
