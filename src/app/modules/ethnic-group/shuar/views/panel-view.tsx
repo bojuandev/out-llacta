@@ -77,8 +77,6 @@ function PanelView({
       {isMobile && (
         <MobileControls
           keysRef={keysRef}
-          cameraYawRef={cameraYawRef}
-          cameraPitchRef={cameraPitchRef}
           onAnimationChange={handleAnimationChange}
         />
       )}

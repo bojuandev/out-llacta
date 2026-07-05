@@ -7,8 +7,6 @@ import { Environment, KeyboardControls } from "@react-three/drei";
 import { Vector3 } from "three";
 import PlayerController from "@/features/player-movement/player-controller";
 import CameraController from "@/features/player-movement/camera-controller";
-import JoystickMovement from "@/features/player-movement/joystick";
-import TouchRotation from "@/features/camera-follow/touch-rotation";
 
 interface CanvasEnvironmentProps {
   children: React.ReactNode;
