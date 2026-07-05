@@ -6,7 +6,7 @@ export default function Home() {
     <main className="h-screen w-full overflow-hidden flex flex-col justify-center items-center px-6 md:px-12 lg:px-16 relative bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
       <div className="max-w-[85rem] w-full mx-auto flex flex-col-reverse md:flex-row gap-6 md:gap-12 items-center justify-center">
         {/* Left Content - SEO Static HTML */}
-        <div className="w-full md:w-2/5 flex flex-col items-center md:items-start text-center md:text-left z-10">
+        <div className="w-full md:w-2/5 flex flex-col items-center md:items-start text-center md:text-left z-10 font-[var(--font-inter)]">
           {/* Logo + Title */}
           <div
             className="flex flex-col items-center md:items-start animate-fade-in-up"
@@ -38,22 +38,22 @@ export default function Home() {
             className="text-xs md:text-sm text-gray-500 dark:text-gray-400 font-medium tracking-wider uppercase animate-fade-in-up"
             style={{ animationDelay: "0.4s", animationFillMode: "both" }}
           >
-            Tour Virtual 3D · Cultura Shuar
+            Tour Virtual 3D · Objetos Culturales Shuar
           </p>
 
           {/* Main Copy */}
           <p
-            className="mt-3 md:mt-5 text-lg md:text-xl lg:text-2xl text-gray-800 dark:text-gray-200 leading-snug max-w-lg animate-fade-in-up font-medium"
+            className="mt-3 md:mt-5 text-sm md:text-base lg:text-lg text-gray-800 dark:text-gray-200 leading-tight max-w-lg animate-fade-in-up font-medium"
             style={{ animationDelay: "0.55s", animationFillMode: "both" }}
           >
-            Descubre el alma de la Amazonía. Los Shuar: guerreros ancestrales, guardianes de la selva, portadores de una sabiduría que desafía el tiempo.
+            Explora objetos culturales únicos de la Etnia Shuar en un tour virtual 3D interactivo. Descubre la riqueza de sus tradiciones, vestimentas y artefactos a través de una experiencia inmersiva.
           </p>
 
           <p
-            className="mt-3 md:mt-4 text-sm md:text-base text-gray-600 dark:text-gray-400 leading-relaxed max-w-lg animate-fade-in-up"
+            className="mt-3 md:mt-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 leading-tight max-w-lg animate-fade-in-up"
             style={{ animationDelay: "0.65s", animationFillMode: "both" }}
           >
-            Camina entre sus tradiciones, siente su conexión con la Pachamama y déjate sorprender por un mundo que ningún libro puede enseñarte.
+            Cada objeto cuenta una historia. Sumérgete en la cultura Shuar y conoce de cerca las piezas que guardan la memoria de un pueblo.
           </p>
 
           {/* CTA Button */}
