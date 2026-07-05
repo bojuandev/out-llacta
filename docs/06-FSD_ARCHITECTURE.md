@@ -39,8 +39,8 @@ User-facing features that provide functionality.
 
 | Feature | Description | Key Files |
 |---------|-------------|-----------|
-| `player-movement/` | Player movement controls (keyboard + joystick) | `joystick.tsx`, `constants.ts`, `types.ts` |
-| `camera-follow/` | Camera tracking and touch rotation | `touch-rotation.tsx`, `types.ts` |
+| `player-movement/` | Player movement controls (keyboard + mobile walk button) | `player-controller.tsx`, `camera-controller.tsx`, `mobile-controls.tsx`, `constants.ts`, `types.ts` |
+| `camera-follow/` | Camera tracking (merged into player-movement) | *(DEPRECATED - use `player-movement/camera-controller.tsx`)* |
 
 **Imports:** Can import from `entities/` and `shared/` only.
 
@@ -64,7 +64,7 @@ shared/
 ├── 3d/                  # 3D rendering utilities (future)
 ├── ui/                  # Reusable UI components and icons
 ├── lib/                 # Libraries, stubs, and utilities
-│   └── ecctrl-stub.tsx  # Temporary stub for ecctrl replacement
+│   └── ecctrl-stub.tsx  # Stub - ecctrl replaced by custom controller (pending cleanup)
 └── config/              # Configuration files
 ```
 
@@ -104,43 +104,50 @@ The alias points to `src/` directory.
 
 ### ecctrl Replacement
 
-The project is transitioning from `ecctrl` to a custom player controller. Current status:
+The project has completed the transition from `ecctrl` to a custom player controller.
 
 | Component | Status | Location |
 |-----------|--------|----------|
-| `ecctrl-stub.tsx` | ✓ Complete | `src/shared/lib/ecctrl-stub.tsx` |
-| `JoystickMovement` | ✓ Implemented | `src/features/player-movement/joystick.tsx` |
-| `TouchRotation` | ✓ Implemented | `src/features/camera-follow/touch-rotation.tsx` |
-| Custom Player Controller | ⏳ Pending | Needs implementation |
-
-The stub files will be replaced with actual implementations in future iterations.
+| `ecctrl-stub.tsx` | ✓ Replaced | `src/shared/lib/ecctrl-stub.tsx` (pending cleanup) |
+| `Custom Player Controller` | ✓ Implemented | `src/features/player-movement/player-controller.tsx` |
+| `Custom Camera Controller` | ✓ Implemented | `src/features/player-movement/camera-controller.tsx` |
+| `Mobile Walk Button` | ✓ Implemented | `src/features/player-movement/mobile-controls.tsx` |
+| `Touch Rotation` | ✓ Merged | Into `camera-controller.tsx` |
+| `JoystickMovement` | ✗ Removed | Nipplejs dependency eliminated |
 
 ## Physics Configuration
 
 Physics are managed via `@react-three/rapier`:
 
 ```tsx
-<Physics timeStep={1/60}>
+<Physics timeStep={1/60} gravity={[0, -20, 0]}>
+  <RigidBody type="fixed" position={[0, -0.1, 0]}>
+    <CuboidCollider args={[100, 0.1, 100]} />
+  </RigidBody>
   {children}
 </Physics>
 ```
 
 Key configurations:
 - `timeStep={1/60}` - Fixed timestep for deterministic physics
-- `colliders="cuboid"` - Used for floor collision (not `trimesh`)
-- `ccd={true}` - Enabled for fast-moving objects to prevent tunneling
+- `gravity={[0, -20, 0]}` - Stronger gravity for snappy movement
+- Floor: `RigidBody type="fixed"` + `CuboidCollider` at `y=-0.1` (thin, aligned with visual)
+- Player: `RigidBody type="dynamic"` + `CapsuleCollider args={[0.5, 0.25]}`
 
-## Mobile Joystick (nipplejs)
+## Mobile Controls (No Joystick)
 
-Mobile controls use `nipplejs` for joystick input:
+Mobile controls were simplified after empirical testing. The best UX is:
+1. **Rotate camera** by touch-dragging on the canvas
+2. **Walk forward** by holding the "Caminar" button
 
-```tsx
-<JoystickMovement
-  onMove={(direction) => handleMove(direction)}
-  onMoveEnd={() => handleMoveEnd()}
-/>
-```
+This mirrors common mobile games (e.g., Minecraft PE) and avoids overlay blocking UI.
 
-Zone layout:
-- **Left half**: Joystick for player movement
+**Implementation:**
+- **Touch rotation**: `onPointerDown/Move/Up` on `<Canvas>` element (in `camera-controller.tsx`)
+- **Walk button**: Fixed bottom-right `z-50`, `onPointerDown/Up` toggles `forward` state (in `mobile-controls.tsx`)
+
+**Removed:**
+- `nipplejs` dependency
+- `src/features/player-movement/joystick.tsx`
+- `src/features/camera-follow/touch-rotation.tsx`
 - **Right half**: Touch rotation for camera control
