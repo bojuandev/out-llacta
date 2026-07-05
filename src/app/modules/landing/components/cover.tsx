@@ -21,7 +21,7 @@ function Cover() {
           style={{ animationDelay: "0.3s" }}
         >
           <img
-            className="rounded-3xl h-64 lg:h-64 w-auto shadow-2xl shadow-black/20 object-cover"
+            className="rounded-3xl h-80 lg:h-96 w-auto shadow-2xl shadow-black/20 object-cover"
             src="/images/shuar-photo.webp"
             alt="Cultura Shuar"
           />
@@ -33,7 +33,7 @@ function Cover() {
           style={{ animationDelay: "0.5s" }}
         >
           <img
-            className="rounded-3xl h-44 lg:h-52 w-auto object-cover"
+            className="rounded-3xl h-64 lg:h-72 w-auto object-cover"
             src="/images/robot-2.webp"
             alt="Tour Virtual 3D"
           />
