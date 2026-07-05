@@ -6,8 +6,7 @@ function Cover() {
       {/* Mobile: single centered image */}
       <div className="md:hidden">
         <img
-          className="rounded-2xl h-40 shadow-xl shadow-black/20 object-cover  animate-float"
-          style={{ animationDelay: "0.3s" }}
+          className="rounded-2xl h-40 shadow-xl shadow-black/20 object-cover animate-fade-in"
           src="/images/shuar-photo.webp"
           alt="Cultura Shuar"
         />
@@ -16,24 +15,20 @@ function Cover() {
       {/* Desktop: overlapping composition */}
       <div className="hidden md:block relative w-full h-full max-w-xl mx-auto">
         {/* Shuar Photo - upper area, slightly right */}
-        <div
-          className="absolute top-4 left-1/2 -translate-x-1/4 animate-fade-in-up"
-          style={{ animationDelay: "0.3s" }}
-        >
+        <div className="absolute top-4 left-1/2 -translate-x-1/4">
           <img
-            className="rounded-3xl h-80 lg:h-96 w-auto shadow-2xl shadow-black/20 object-cover"
+            className="rounded-3xl h-80 lg:h-96 w-auto shadow-2xl shadow-black/20 object-cover animate-fade-in"
+            style={{ animationDelay: "0.2s" }}
             src="/images/shuar-photo.webp"
             alt="Cultura Shuar"
           />
         </div>
 
         {/* Robot Photo - lower area, slightly left */}
-        <div
-          className="absolute bottom-16 left-1/2 -translate-x-3/4 animate-fade-in-up-slow"
-          style={{ animationDelay: "0.5s" }}
-        >
+        <div className="absolute bottom-16 left-1/2 -translate-x-3/4">
           <img
-            className="rounded-3xl h-64 lg:h-72 w-auto object-cover"
+            className="rounded-3xl h-64 lg:h-72 w-auto object-cover animate-fade-in"
+            style={{ animationDelay: "0.5s" }}
             src="/images/robot-2.webp"
             alt="Tour Virtual 3D"
           />
