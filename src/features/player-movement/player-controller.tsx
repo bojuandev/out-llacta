@@ -34,7 +34,7 @@ export default function PlayerController({
   const rigidBodyRef = useRef<any>(null);
   const meshRef = useRef<any>(null);
   const isMovingRef = useRef(false);
-  const [isReady, setIsReady] = useState(false);
+  const [isReady, setIsReady] = useState(true);
 
   useFrame(() => {
     const { forward, backward, leftward, rightward } = keysRef.current;
@@ -101,16 +101,7 @@ export default function PlayerController({
     }
   });
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (rigidBodyRef.current) {
-        rigidBodyRef.current.setTranslation({ x: 0, y: 0.75, z: 0 }, true);
-        rigidBodyRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
-      }
-      setIsReady(true);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
+  // Robot visible from start, no delay needed
 
   return (
     <RigidBody

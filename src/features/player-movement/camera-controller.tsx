@@ -13,8 +13,8 @@ interface CameraControllerProps {
   smoothness?: number;
 }
 
-const MIN_PITCH = -Math.PI / 3;
-const MAX_PITCH = Math.PI / 3;
+const MIN_PITCH = -Math.PI / 6;  // -30° (evita atravesar el suelo)
+const MAX_PITCH = Math.PI / 6;   // +30° (evita ver demasiado arriba)
 
 export default function CameraController({
   targetPosition,
