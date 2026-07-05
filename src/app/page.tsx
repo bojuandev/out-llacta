@@ -35,25 +35,25 @@ export default function Home() {
 
           {/* Tagline */}
           <p
-            className="text-xs md:text-base text-gray-600 dark:text-gray-300 font-medium tracking-wide uppercase animate-fade-in-up"
+            className="text-xs md:text-sm text-gray-500 dark:text-gray-400 font-medium tracking-wider uppercase animate-fade-in-up"
             style={{ animationDelay: "0.4s", animationFillMode: "both" }}
           >
-            Descubre la Riqueza Ancestral de la Etnia Shuar en una Experiencia Virtual Inmersiva
+            Tour Virtual 3D · Cultura Shuar
           </p>
 
           {/* Main Copy */}
           <p
-            className="mt-3 md:mt-6 text-base md:text-xl lg:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed max-w-lg animate-fade-in-up"
+            className="mt-3 md:mt-5 text-lg md:text-xl lg:text-2xl text-gray-800 dark:text-gray-200 leading-snug max-w-lg animate-fade-in-up font-medium"
             style={{ animationDelay: "0.55s", animationFillMode: "both" }}
           >
-            Adéntrate en el corazón de la Amazonía y descubre el alma de la Etnia Shuar. Un pueblo de guerreros y guardianes que protege los secretos de la selva y una sabiduría que ha resistido el paso de los siglos.
+            Descubre el alma de la Amazonía. Los Shuar: guerreros ancestrales, guardianes de la selva, portadores de una sabiduría que desafía el tiempo.
           </p>
 
           <p
-            className="mt-2 md:mt-3 text-sm md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-lg animate-fade-in-up"
+            className="mt-3 md:mt-4 text-sm md:text-base text-gray-600 dark:text-gray-400 leading-relaxed max-w-lg animate-fade-in-up"
             style={{ animationDelay: "0.65s", animationFillMode: "both" }}
           >
-            Atrévete a cruzar el umbral de lo desconocido. Este recorrido virtual te llevará por senderos de historia, tradición y espiritualidad que despertarán tu espíritu de explorador.
+            Camina entre sus tradiciones, siente su conexión con la Pachamama y déjate sorprender por un mundo que ningún libro puede enseñarte.
           </p>
 
           {/* CTA Button */}
