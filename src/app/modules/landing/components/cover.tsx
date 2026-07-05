@@ -3,13 +3,22 @@
 function Cover() {
   return (
     <div className="relative w-full h-full flex items-center justify-center md:justify-end">
-      {/* Mobile: single centered image */}
-      <div className="md:hidden">
-        <img
-          className="rounded-2xl h-40 shadow-xl shadow-black/20 object-cover animate-fade-in"
-          src="/images/shuar-photo.webp"
-          alt="Cultura Shuar"
-        />
+      {/* Mobile: Shuar and Robot overlapping */}
+      <div className="md:hidden relative w-full h-full">
+        <div className="absolute top-2 left-1/2 -translate-x-1/3 animate-fade-in">
+          <img
+            className="rounded-2xl h-36 w-auto shadow-xl shadow-black/20 object-cover animate-float"
+            src="/images/shuar-photo.webp"
+            alt="Cultura Shuar"
+          />
+        </div>
+        <div className="absolute bottom-8 left-1/4 animate-fade-in" style={{ animationDelay: "0.3s" }}>
+          <img
+            className="rounded-2xl h-28 w-auto object-cover animate-float"
+            src="/images/robot-2.webp"
+            alt="Tour Virtual 3D"
+          />
+        </div>
       </div>
 
       {/* Desktop: overlapping composition */}
