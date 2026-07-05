@@ -1,17 +1,56 @@
 # 3D System Documentation
 
+> **AI-First Changelog (Jul 2026):** This system was refactored from `ecctrl` to a custom controller. See summary below.
+
+## AI-First Quick Reference for Future Agents
+
+### What Changed (July 2026 Session)
+
+| Component | Before | After | Reason |
+|-----------|--------|-------|--------|
+| **Player Controller** | `ecctrl` package | Custom `PlayerController` with `RigidBody` + `CapsuleCollider` | ecctrl caused ground penetration and floating issues |
+| **Camera** | Right-click drag | Click-and-hold drag + touch support | Better UX, mobile compatible |
+| **Ground** | `grass-tile.glb` scaled | `planeGeometry` with `CuboidCollider` at `y=-0.1` | Visual/physics alignment |
+| **Mobile** | Nipplejs joystick | Touch on canvas + "Caminar" button | Simpler UX, no overlay blocking UI |
+| **Robot Position** | `[0, -0.85, 0]` | `[0, -0.75, 0]` | Empirically tested to touch ground |
+| **Proximity** | `playerRef` (mesh ref) | `playerPosition` (Vector3) | Cleaner data flow |
+
+### Critical Values (Do Not Change Without Testing)
+
+| Value | File | Description |
+|-------|------|-------------|
+| `RigidBody Y: 0.75` | `player-controller.tsx` | Capsule center (bottom at y=0) |
+| `Mesh offset Y: -0.75` | `player-controller.tsx` | Aligns robot feet with ground |
+| `Ground collider: [100, 0.1, 100]` | `canvas-environment.tsx` | Thin collider at y=-0.1 |
+| `Pitch limits: ±30°` | `camera-controller.tsx` | Prevents seeing under floor |
+| `Camera distance: 7` | `camera-controller.tsx` | Third-person distance |
+
+### Files Created
+- `src/features/player-movement/player-controller.tsx` - Custom controller
+- `src/features/player-movement/camera-controller.tsx` - Third-person camera
+- `src/features/player-movement/mobile-controls.tsx` - Mobile walk button
+- `src/shared/hooks/use-is-mobile.ts` - Mobile detection
+
+### Files Removed
+- `src/features/player-movement/joystick.tsx` - Nipplejs joystick
+- `src/features/camera-follow/touch-rotation.tsx` - Separate touch component
+- `src/app/modules/shared/3D-components/player-control.tsx` - ecctrl wrapper
+
+---
+
 ## Table of Contents
 
 1. [Technology Stack](#technology-stack)
 2. [Canvas Hierarchy](#canvas-hierarchy)
 3. [Physics System (Rapier)](#physics-system-rapier)
-4. [Player Controller (ecctrl)](#player-controller-ecctrl)
-5. [Proximity Detection System](#proximity-detection-system)
-6. [Asset Pipeline](#asset-pipeline)
-7. [Lighting and Environment](#lighting-and-environment)
-8. [Animation System](#animation-system)
-9. [3D Components Reference](#3d-components-reference)
-10. [ecctrl Patch](#ecctrl-patch)
+4. [Player Controller (Custom)](#player-controller-custom)
+5. [Camera System](#camera-system)
+6. [Mobile Controls](#mobile-controls)
+7. [Proximity Detection System](#proximity-detection-system)
+8. [Asset Pipeline](#asset-pipeline)
+9. [Lighting and Environment](#lighting-and-environment)
+10. [Animation System](#animation-system)
+11. [3D Components Reference](#3d-components-reference)
 
 ---
 
@@ -25,7 +64,7 @@
 | `@react-three/fiber` | ^9.1.2 | React renderer for Three.js |
 | `@react-three/drei` | ^10.0.7 | Helpers and utilities |
 | `@react-three/rapier` | ^2.1.0 | Physics engine integration |
-| `ecctrl` | ^1.0.92 | 3D character controller |
+| `ecctrl` | ^1.0.92 | **DEPRECATED** - Replaced by custom controller |
 
 ### Why These Libraries?
 
@@ -33,7 +72,7 @@
 |---------|-----------|
 | **React Three Fiber** | Declarative Three.js - components instead of imperative code |
 | **Rapier** | Rust-based physics, fast and WASM-powered |
-| **ecctrl** | Pre-built character controller with joystick support |
+| **Custom Controller** | Replaced ecctrl to fix positioning/ground alignment issues |
 | **Drei** | Common 3D helpers (loaders, controls, text rendering) |
 
 ---

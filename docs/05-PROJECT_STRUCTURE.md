@@ -1,5 +1,7 @@
 # Project Structure Documentation
 
+> **AI-First Changelog (Jul 2026):** Player controller refactored from ecctrl to custom. Mobile simplified. `/test` page removed.
+
 ## Table of Contents
 
 1. [Root Directory](#root-directory)
@@ -144,7 +146,7 @@ app/modules/ethnic-group/shuar/
 app/modules/shared/
 ├── 3D-components/
 │   ├── canvas-environment.tsx  # Main 3D canvas
-│   ├── player-control.tsx      # Player input
+│   ├── player-control.tsx      # DEPRECATED: Replaced by custom controller in src/features/
 │   ├── player.tsx              # Player 3D model
 │   ├── main-environment.tsx    # Static scene
 │   ├── custom-rigid-body.tsx   # Physics + detection
@@ -170,6 +172,35 @@ app/modules/shared/
 └── layouts/
     └── interface-layout.tsx     # Main UI layout wrapper
 ```
+
+### New Files (v2.0 Refactor - July 2026)
+
+**Location:** `src/` (Feature-Sliced Design structure)
+
+```
+src/
+├── features/
+│   ├── player-movement/
+│   │   ├── player-controller.tsx  # Custom RigidBody controller (replaces ecctrl)
+│   │   ├── camera-controller.tsx  # Third-person click-and-hold camera
+│   │   └── mobile-controls.tsx    # Mobile walk button (replaces joystick)
+│   └── camera-follow/
+│       └── (removed - merged into camera-controller.tsx)
+├── entities/
+│   ├── scene-element/
+│   │   └── grass-floor.tsx      # Visual ground (no collider)
+│   └── (other entities)
+└── shared/
+    ├── hooks/
+    │   └── use-is-mobile.ts     # Mobile detection hook
+    └── lib/
+        └── ecctrl-stub.tsx      # Stub (pending removal)
+```
+
+**Removed Files:**
+- `src/features/player-movement/joystick.tsx` (Nipplejs joystick)
+- `src/features/camera-follow/touch-rotation.tsx` (merged into camera controller)
+- `src/app/test/` (sandbox page - removed after refactor)
 
 ---
 
