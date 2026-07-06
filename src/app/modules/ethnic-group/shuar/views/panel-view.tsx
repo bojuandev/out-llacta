@@ -74,7 +74,7 @@ function PanelView({
           objectsToRender={objectsOfPanel}
         />
       </CanvasEnvironment>
-      {isMobile && (
+      {isMobile && !loading && (
         <MobileControls
           keysRef={keysRef}
           onAnimationChange={handleAnimationChange}
