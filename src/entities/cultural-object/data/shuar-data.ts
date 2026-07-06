@@ -271,10 +271,10 @@ export const objectsOfPanel: CulturalObjectMap = {
       label: "Wempenk",
       type: "object",
       objectData: {
-        srcObject: "/objects-3D/shuar/alfareria-cocina/Wempenk/wempenk.glb",
+        srcObject: "/objects-3D/shuar/alfareria-cocina/wempenk/wempenk.glb",
         description:
           "Recipiente de forma alargada. Se utiliza para transportar líquidos.",
-        images: ["/objects-3D/shuar/alfareria-cocina/Wempenk/wempenk.webp"],
+        images: ["/objects-3D/shuar/alfareria-cocina/wempenk/wempenk.webp"],
         objectProps: {
           position: [0, 1.15, 0],
           rotation: [0, 0, 0],
